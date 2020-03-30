@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="{{asset("vendors/nice-select/css/nice-select.css")}}" />
 <link rel="stylesheet" href="{{asset("vendors/animate-css/animate.css")}}" />
 <link rel="stylesheet" href="{{asset("vendors/jquery-ui/jquery-ui.css")}}" />
-/>
+
 <!-- main css -->
 <link rel="stylesheet" href="{{asset("css/style.css")}}" />
 <link rel="stylesheet" href="{{asset("css/responsive.css")}}" />
