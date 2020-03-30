@@ -1,3 +1,9 @@
+@extends('layout')
+
+
+
+@section('content')
+
 <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
 	      <div class="slider-item js-fullheight">
@@ -620,3 +626,4 @@
         </div>
     	</div>
     </section>
+    @endsection
