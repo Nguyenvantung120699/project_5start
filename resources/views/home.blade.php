@@ -1,5 +1,5 @@
 @extends('layout.layout')
-
+@section('title','Home')
 @section('content')
     <!--================Home Banner Area =================-->
     <section class="home_banner_area mb-40">
