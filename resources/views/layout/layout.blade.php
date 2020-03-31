@@ -1,7 +1,6 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html lang="zxx">
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 @include('html.head')
 <body>
@@ -14,11 +13,9 @@
 
 <section class="product-section">
 
-    <div class="container">
 
         @yield('content')
 
-    </div>
 
 </section>
 

@@ -20,3 +20,6 @@ Route::prefix("admin")->group(function (){
 //   });
 
 Route::get("/","Controller@home");
+Route::get("/home",function (){
+    return view('home');
+});
