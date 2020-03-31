@@ -10,7 +10,7 @@ Route::get('category',"AdminController@category");
 Route::get('category/create',"AdminController@categoryCreate");
 Route::get('category/edit',"AdminController@categoryEdit");
 //route product
-Route::get('product',"AdminController@product");
+Route::get('product',"AdminController@products");
 Route::get('product/create',"AdminController@productCreate");
 Route::get('product/edit',"AdminController@productEdit");
 
