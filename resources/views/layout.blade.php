@@ -4,7 +4,6 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 @include('html.head')
-@include('html.head')
 <body>
 
 	<!-- Start Header Area -->
