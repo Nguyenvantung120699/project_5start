@@ -17,4 +17,7 @@ class Product extends Model
     public function Brand(){
         return $this->belongsTo("\App\Brand");
     }
+    public function getPrice(){
+        return number_format($this->price,2,',','.');
+    }
 }

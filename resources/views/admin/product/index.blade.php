@@ -1,17 +1,12 @@
 @extends("admin.layout")
 
 @section("top_content")
-<div id="content">
-<!--breadcrumbs-->
-  <div id="content-header">
+<h2>Product Table Manage</h2>
+<div>
     <div class="quick-actions_homepage">
-    <h2>Product Table Manage</h2>
-      <ul class="quick-actions">
-        <li class="bg_lb"> <a href="interface.html"> <i class="icon-pencil"></i>Create Product</a> </li>
-      </ul>
+        <div><a href="{{url('admin/product/create')}}"><button class="btn btn-success">Create Product<i class="icon-plus"></i></button></a></div>
     </div>
-  </div>
-  </div>
+  </div>  
 @endsection
 
 @section("main_content")
@@ -20,53 +15,49 @@
       <div class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-            <h5>Static table</h5>
+            <h5>Product Manage</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered table-striped">
-              <thead>
+                <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Created at</th>
+                    <th>Updated at</th>
+                    <th>Actions</th>
                 </tr>
-              </thead>
-              <tbody>
-                <tr class="odd gradeX">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0</td>
-                  <td>Win 95+</td>
-                  <td class="center"> 4</td>
-                  <td class="center">X</td>
-                </tr>
-                <tr class="even gradeC">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.0</td>
-                  <td>Win 95+</td>
-                  <td class="center">5</td>
-                  <td class="center">C</td>
-                </tr>
-                <tr class="odd gradeA">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.5</td>
-                  <td>Win 95+</td>
-                  <td class="center">5.5</td>
-                  <td class="center">A</td>
-                </tr>
-                <tr class="even gradeA">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 6</td>
-                  <td>Win 98+</td>
-                  <td class="center">6</td>
-                  <td class="center">A</td>
-                </tr>
-              </tbody>
+                </thead>
+                <tbody>
+                @forelse($products as $p)
+                    <tr class="tr-shadow">
+                        <td data-target="id" class="align-items-center align-middle">{{ $p->id }}</td>
+                        <td data-target="product_name">{{ $p->product_name }}</td>
+                        <td data-target="brand_name">{{ $p->Brand->brand_name }}</td>
+                        <td data-target="category_name">{{ $p->Category->category_name }}</td>
+                        <td data-target="quantity" class="number">{{ $p->quantity }}</td>
+                        <td data-target="price" class="number">{{ number_format($p->price, 2) }}</td>
+                        <td>{{ $p->created_at }}</td>
+                        <td>{{ $p->updated_at }}</td>
+                        <td>
+                            <div class="table-data-feature">
+                                <form action="{{url("admin/product/edit",['id'=>$p->id])}}">
+                                    <button class="btn btn-info"><i class="icon-pencil"></i>sửa</button>
+                                </form>
+                                <form action="{{url("admin/product/delete",['id'=>$p->id])}}">
+                                    <button class="btn btn-danger"><i class="icon-info-sign"></i>xóa</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <p>Không có sản phẩm</p>
+                @endforelse
+                </tbody>
             </table>
           </div>
         </div>

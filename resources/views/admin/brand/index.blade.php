@@ -1,17 +1,12 @@
 @extends("admin.layout")
 
 @section("top_content")
-<div id="content">
-<!--breadcrumbs-->
-  <div id="content-header">
+<h2>Brand Table Manage</h2>
+<div>
     <div class="quick-actions_homepage">
-    <h2>Brand Table Manage</h2>
-      <ul class="quick-actions">
-        <li class="bg_lb"> <a href="interface.html"> <i class="icon-pencil"></i>Create Brand</a> </li>
-      </ul>
+        <div><a href="{{url('admin/brand/create')}}"><button class="btn btn-success">Create Brand<i class="icon-plus"></i></button></a></div>
     </div>
-  </div>
-  </div>
+  </div>  
 @endsection
 
 @section("main_content")
@@ -24,49 +19,38 @@
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered table-striped">
-              <thead>
+                <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                    <th>ID</th>
+                    <th>name</th>
+                    <th>created at</th>
+                    <th>updated at</th>
+                    <th></th>
                 </tr>
-              </thead>
-              <tbody>
-                <tr class="odd gradeX">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0</td>
-                  <td>Win 95+</td>
-                  <td class="center"> 4</td>
-                  <td class="center">X</td>
-                </tr>
-                <tr class="even gradeC">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.0</td>
-                  <td>Win 95+</td>
-                  <td class="center">5</td>
-                  <td class="center">C</td>
-                </tr>
-                <tr class="odd gradeA">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.5</td>
-                  <td>Win 95+</td>
-                  <td class="center">5.5</td>
-                  <td class="center">A</td>
-                </tr>
-                <tr class="even gradeA">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 6</td>
-                  <td>Win 98+</td>
-                  <td class="center">6</td>
-                  <td class="center">A</td>
-                </tr>
-              </tbody>
+                </thead>
+                <tbody>
+                @forelse($brands as $c)
+                    <tr class="tr-shadow">
+                        <td>{{$c->id}}</td>
+                        <td>{{$c->brand_name}}</td>
+                        <td>{{$c->created_at}}</td>
+                        <td>{{$c->updated_at}}</td>
+                        <td>
+                            <div class="table-data-feature">
+                                <form action="{{url("admin/brand/edit",['id'=>$c->id])}}">
+                                        <button class="btn btn-info"><i class="icon-pencil"></i>sửa</button>
+                                </form>
+                                <form action="{{url("admin/brand/delete",['id'=>$c->id])}}">
+                                    <button class="btn btn-danger"><i class="icon-info-sign"></i>xóa</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="spacer"></tr>
+                @empty
+                    <p>Không có danh mục nào</p>
+                @endforelse
+                </tbody>
             </table>
           </div>
         </div>
