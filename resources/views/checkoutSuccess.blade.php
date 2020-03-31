@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layout')
 @section('title',"Đặt hàng thành công")
 @section('content')
     <section class="banner_area" style="height: 300px">

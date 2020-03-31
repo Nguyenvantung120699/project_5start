@@ -1,5 +1,5 @@
-@extends('layout.layout')
-@section('title','Product details')
+@extends('layout')
+@section('title','Check out')
 @section('content')
     <section class="banner_area">
         <div class="banner_inner d-flex align-items-center">

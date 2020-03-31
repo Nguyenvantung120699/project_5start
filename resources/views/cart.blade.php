@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layout')
 @section('title','Product details')
 @section('content')
     <section class="banner_area">
