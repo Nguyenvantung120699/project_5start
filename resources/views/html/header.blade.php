@@ -61,7 +61,7 @@
                         <a class="nav-link" href="category.html">Shop Category</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="single-product.html">Product Details</a>
+                        <a class="nav-link" href="{{url("/shopping/2")}}">Shop product</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="checkout.html">Product Checkout</a>
