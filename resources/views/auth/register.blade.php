@@ -50,7 +50,7 @@
 					</div>
 
                     <div class="wrap-input100 validate-input m-b-16" data-validate = "Confirm Password is required">
-						<input class="input100" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+						<input class="input100" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                         <span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<span class="lnr lnr-lock"></span>

@@ -56,18 +56,7 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <input type="text" name="category_id" type="text" value="{{old("category_id")}}"
-                               class="form-control cc-name @if($errors->has("category_id"))is-invalid @endif" placeholder="category id" />
-                               @if($errors->has("category_id"))
-                                <p style="color:red">{{$errors->first("category_id")}}</p>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <div class="main_input_box col-md-12">
-                            <select class="form-group form-control" name="category_id" required>
+                            <select name="category_id" style="width:77%;height:37px" required>
                             @php
                                 $category = \App\Category::all();
                             @endphp
@@ -82,7 +71,7 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <select class="form-group form-control" name="brand_id" required>
+                            <select name="brand_id" style="width:77%;height:37px" required>
                             @php
                                 $brand = \App\Brand::all();
                             @endphp
