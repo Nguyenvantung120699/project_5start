@@ -8,7 +8,6 @@ use App\Brand;
 use App\Product;
 use App\User;
 
-
 class AdminController extends Controller
 {
     public function homeadmin(){
