@@ -15,8 +15,13 @@ return [
     |
     */
 
+<<<<<<< HEAD
      'default' => env('DB_CONNECTION', 'mysql'),
     // 'default' => "pgsql",
+=======
+      'default' => env('DB_CONNECTION', 'mysql'),
+//    'default' => "pgsql",
+>>>>>>> cf1ed46fd21094d5414c9ef8bd8c394894606407
 
     /*
     |--------------------------------------------------------------------------

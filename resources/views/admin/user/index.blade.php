@@ -19,30 +19,40 @@
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered table-striped">
-              <thead>
+                <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                    <th>ID</th>
+                    <th>email</th>
+                    <th>name</th>
+                    <th>email_verified_at</th>
+                    <th>role</th>
+                    <th></th>
                 </tr>
-              </thead>
-              <tbody>
-                <tr class="even gradeA">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 6</td>
-                  <td>Win 98+</td>
-                  <td class="center">6</td>
-                  <td class="center">
-                    <div> 
-                        <a><button class="btn btn-info"><i class="icon-pencil"></i>sửa</button></a>
-                        <a><button class="btn btn-danger"><i class="icon-info-sign"></i>xóa</button></a>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
+                </thead>
+                <tbody>
+                @forelse($user as $u)
+                    <tr class="tr-shadow">
+                        <td>{{$u->id}}</td>
+                        <td>{{$u->email}}</td>
+                        <td>{{$u->name}}</td>
+                        <td>{{$u->email_verified_at}}</td>
+                        <td>{{$u->role}}</td>
+                        <td>
+                            <div class="table-data-feature">
+                                <form action="{{url("admin/user/edit",['id'=>$u->id])}}">
+                                    <button class="btn btn-info"><i class="icon-pencil"></i>sửa</button>
+                                </form>
+                                <form action="{{url("admin/user/delete",['id'=>$u->id])}}">
+                                    <button class="btn btn-danger"><i class="icon-info-sign"></i>xóa</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="spacer"></tr>
+                @empty
+                    <p>Không có người dùng nào</p>
+                @endforelse
+                </tbody>
             </table>
           </div>
         </div>

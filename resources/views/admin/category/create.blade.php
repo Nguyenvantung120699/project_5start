@@ -6,8 +6,9 @@
 
 @section("main_content")
 
-<div id="loginbox">            
-            <form id="loginform" class="form-vertical" action="index.html"  method="post">
+<div id="loginbox">
+            <form id="loginform" class="form-vertical"  action="{{url("admin/category/store")}}" method="post">
+                @csrf
 				 <div class="control-group normal_text"> <h3><img src="{{asset("admin/html/img/logo.png")}}" alt="Logo" /></h3></div>
                 <div class="control-group">
                     <div class="controls">
@@ -21,7 +22,12 @@
                     </div>
                 </div>
                 <div class="form-actions">
-                    <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">Submit</a></span>
+                    <div>
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-lock fa-lg"></i>
+                            <span id="payment-button-amount">Gửi Đi</span>
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

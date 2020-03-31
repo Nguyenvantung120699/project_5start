@@ -1,8 +1,8 @@
 <?php
-//route for admin
 Route::prefix("admin")->group(function (){
     include_once("admin.php");
 });
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,7 @@ Route::get("/","Controller@home");
 Route::get("/danh-muc/{id}","Controller@listingCategory");
 Route::get("/thuong-hieu/{id}","Controller@listingBrand");
 Route::get("/san-pham/{id}","Controller@product");
-Route::get("/contact","ontroller@contact");
+Route::get("/contact","Controller@contact");
 Route::get("/shopping/{id}","Controller@shopping")->middleware("auth");
 Route::get("/cart","Controller@cart")->middleware("auth");
 Route::get("/clear-cart","Controller@clearCart")->middleware("auth");

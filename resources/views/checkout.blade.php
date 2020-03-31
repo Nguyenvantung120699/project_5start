@@ -61,7 +61,7 @@
                                 </div>
                                 <textarea class="form-control" name="message" id="message" rows="1" placeholder="Order Notes"></textarea>
                             </div>
-                            <button class="site-btn btn-full" type="submit">Place Order</button>
+                            <button class="main_btn" type="submit">Place Order</button>
                         </form>
 
                     </div>
