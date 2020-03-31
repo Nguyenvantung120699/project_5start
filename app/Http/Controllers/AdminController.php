@@ -20,6 +20,9 @@ class AdminController extends Controller
         $brands =Brand::all();
         return view('admin.brand.index',['brands'=>$brands]);
     }
+    public function brandCreate(){
+        return view('admin.brand .create');
+    }
 
 
     //group function category
