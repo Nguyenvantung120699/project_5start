@@ -16,3 +16,6 @@
 //   });
 
 Route::get("/","Controller@home");
+Route::get("/home",function (){
+    return view('home');
+});
