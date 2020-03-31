@@ -19,6 +19,6 @@
 
 
 </section>
-
+@include('html.js')
 <!-- Product section end -->
 @include('html.footer')

@@ -20,10 +20,10 @@ class CreateOrder extends Migration
             $table->string("shipping_address");
             $table->string("telephone");
             $table->decimal("grand_total",12,4);
-            $table->string("payment_total");
+            $table->string("payment_method");
             $table->unsignedInteger("status");
             $table->timestamps();
-            $table->foreign("user_id")->references("id")->on("user");
+            $table->foreign("user_id")->references("id")->on("users");
         });
         Schema::create('order_product',function (Blueprint $table){
             $table->unsignedBigInteger("order_id");

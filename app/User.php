@@ -28,6 +28,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    const ADMIN=1;
+    const USER=0;
     /**
      * The attributes that should be cast to native types.
      *
