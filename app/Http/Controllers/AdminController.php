@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,6 +8,7 @@ use App\Category;
 use App\Brand;
 use App\Product;
 use App\User;
+
 
 class AdminController extends Controller
 {
@@ -35,9 +37,9 @@ class AdminController extends Controller
     }
 
     //group function product
-    public function product(){
-        $products = Product::all();
-        return view('admin.product.index',['products'=>$products]);
+    public function products(){
+        $product = Product::all();
+        return view('admin.product.index',['product'=>$product]);
     }
     public function productCreate(){
         return view('admin.product.create');

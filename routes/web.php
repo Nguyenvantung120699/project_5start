@@ -1,4 +1,8 @@
 <?php
+//route for admin
+Route::prefix("admin")->group(function (){
+    include_once("admin.php");
+});
 
 /*
 |--------------------------------------------------------------------------
