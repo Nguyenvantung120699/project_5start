@@ -1,5 +1,9 @@
 <?php
 
+//route for admin
+Route::prefix("admin")->group(function (){
+    include_once("admin.php");
+});
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,22 +15,8 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+//   });
+
 Route::get("/","Controller@home");
-Route::get("/danh-muc/{id}","Controller@listingCategory");
-Route::get("/thuong-hieu/{id}","Controller@listingBrand");
-Route::get("/san-pham/{id}","Controller@product");
-Route::get("/contact","ontroller@contact");
-Route::get("/shopping/{id}","Controller@shopping")->middleware("auth");
-Route::get("/cart","Controller@cart")->middleware("auth");
-Route::get("/clear-cart","Controller@clearCart")->middleware("auth");
-Route::get("/check-out","Controller@checkout")->middleware("auth");
-Route::post("/check-out","Controller@placeOrder")->middleware("auth");
-Route::get("checkout-success","Controller@checkoutSuccess");
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/log-out',function (){
-   \Illuminate\Support\Facades\Auth::logout();
-   return redirect()->to("/login");
-});

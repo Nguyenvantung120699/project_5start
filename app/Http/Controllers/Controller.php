@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Brand;
-use App\Category;
-use App\Order;
-use App\Product;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrederCreate;
+use App\Product;
+use App\Category;
+use App\Order;
+use App\OrderProduct;
+use App\User;
+use App\Brand;
+use App\Mail\CancelOrder;;
 
 class Controller extends BaseController
 {
@@ -22,117 +27,4 @@ class Controller extends BaseController
     public function home(){
         return view("home");
         }
-
-    public function product($id){
-        $product=Product::find($id);
-        $brand = Brand::find($product->brand_id);
-        $img =explode(",",$product->gallery);
-        $category_product =Product::where("category_id",$product->category_id)->where('id',"!=",$product->id)->take(10)->get();
-        $brand_product =Product::where("brand_id",$product->brand_id)->where('id',"!=",$product->id)->take(10)->get();
-        return view('productView',['product'=>$product,'category_product'=>$category_product,'brand_product'=>$brand_product,'brand'=>$brand,'img'=>$img]);
-    }
-    public function contact(){
-        return view("contact");
-    }
-    public function listingCategory($id){
-        $category = Category::find($id);
-        $product=$category->Products()->paginate(9);
-        $categories=Category::all();
-        $brands=Brand::all();
-        return view("listingCategory",['products'=>$product,'category'=>$category,'categories'=>$categories,'brands'=>$brands]);
-    }
-    public function listingBrand($id){
-        $brand = Brand::find($id);
-        $product=$brand->Products()->paginate(9);
-        $categories=Category::all();
-        $brands=Brand::all();
-        return view("listingBrand",['products'=>$product,'brand'=>$brand,'categories'=>$categories,'brands'=>$brands]);
-    }
-    public function shopping($id, Request $request){
-        $product=Product::find($id);
-        $cart =$request->session()->get("cart");
-
-        if($cart==null){
-            $cart=[];
-        }
-//        $cart_total = $request->session()->get("cart_total");
-//        if($cart_total == null) $cart_total =0;
-        foreach ($cart as $p){
-            if($p->id == $product->id){
-                $p->cart_qty =$p->cart_qty+1;
-//                $cart_total += $p->price;
-                session(["cart"=>$cart]);
-                return redirect()->to("/cart");
-            }
-        }
-        $product->cart_qty=1;
-        $cart[]=$product;
-//        $cart_total += $product->price;
-        session(["cart"=>$cart]);
-//        session(["cart_total"=>$cart_total]);
-        return redirect()->to("/cart");
-    }
-    public function cart(Request $request){
-    $cart = $request->session()->get("cart");
-    if($cart == null){
-        $cart = [];
-    }
-    $cart_total = 0 ;
-    foreach ($cart as $p){
-        $cart_total += ($p->price*$p->cart_qty);
-    }
-    return view("cart",["cart"=>$cart,'cart_total'=>$cart_total]);
-
-}
-    public function clearCart(Request $request){
-        $request->session()->forget("cart");
-        return redirect()->to("/");
-    }
-    public function checkout(Request $request){
-        if(!$request->session()->has("cart")){
-            return redirect()->to("/");
-        }
-        $cart = $request->session()->get('cart');
-        $cart_total = 0;
-        foreach ($cart as $p){
-            $cart_total += ($p->price * $p->cart_qty);
-        }
-        return view("checkout",["cart"=>$cart,'cart_total'=>$cart_total]);
-    }
-    public function placeOrder(Request $request){
-        $request->validate([
-            'customer_name'=> 'required | string',
-            'address' => 'required',
-            'payment_method'=> 'required',
-            'telephone'=> 'required',
-        ]);
-
-        $cart = $request->session()->get('cart');
-        $grand_total = 0;
-        foreach ($cart as $p){
-            $grand_total += ($p->price * $p->cart_qty);
-        }
-        $order = Order::create([
-            'user_id'=>Auth::id(),
-            'customer_name'=> $request->get("customer_name"),
-            'shipping_address'=> $request->get("address"),
-            'telephone'=> $request->get("telephone"),
-            'grand_total'=> $grand_total,
-            'payment_method'=> $request->get("payment_method"),
-            "status"=> Order::STATUS_PENDING
-        ]);
-        foreach ($cart as $p){
-            DB::table("order_product")->insert([
-                'order_id'=> $order->id,
-                'product_id'=>$p->id,
-                'qty'=>$p->cart_qty,
-                'price'=>$p->price
-            ]);
-        }
-        session()->forget('cart');
-        return redirect()->to("/checkout-success");
-    }
-    public function checkoutSuccess(){
-        return view("checkoutSuccess");
-    }
 }

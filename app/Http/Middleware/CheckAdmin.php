@@ -3,7 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use \Illuminate\Support\Facades\Auth;
+use \App\User;
 class CheckAdmin
 {
     /**
@@ -16,12 +17,12 @@ class CheckAdmin
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            $currentUser =Auth::user();
+            $currentUser = Auth::user();
             if($currentUser->role==User::ADMIN){
                 return $next($request);
             }
-            return redirect()->to('/');
+            return redirect()->to("/");
         }
-        return redirect()->to('/login');
+        return redirect()->to("/login");
     }
 }
