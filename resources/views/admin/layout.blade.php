@@ -4,7 +4,7 @@
 
 @includeIf("admin.html_admin.head")
 
-<body>
+<body style="margin:0px; padding:0px;">
 <div id="header">
   <h1><a href="dashboard.html">Matrix Admin</a></h1>
 </div>
@@ -82,10 +82,10 @@
 
 <!--main-container-part-->
 <div id="content">
-<!--Action boxes-->
-    <div class="row">
+<div class="container text-center">
         @yield("top_content")
     </div>
+<!--Action boxes-->
     <div class="container-fluid">
         @yield("main_content")
     </div>

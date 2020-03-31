@@ -1,17 +1,12 @@
 @extends("admin.layout")
 
 @section("top_content")
-<div id="content">
-<!--breadcrumbs-->
-  <div id="content-header">
+<h2>User Table Manage</h2>
+<div>
     <div class="quick-actions_homepage">
-    <h2>User Table Manage</h2>
-      <ul class="quick-actions">
-        <li class="bg_lb"> <a href="interface.html"> <i class="icon-pencil"></i>Create User</a> </li>
-      </ul>
+        <div><a href="{{url('admin/user/create')}}"><button class="btn btn-success">Create User<i class="icon-plus"></i></button></a></div>
     </div>
-  </div>
-  </div>
+  </div>    
 @endsection
 
 @section("main_content")
@@ -34,37 +29,18 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="odd gradeX">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0</td>
-                  <td>Win 95+</td>
-                  <td class="center"> 4</td>
-                  <td class="center">X</td>
-                </tr>
-                <tr class="even gradeC">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.0</td>
-                  <td>Win 95+</td>
-                  <td class="center">5</td>
-                  <td class="center">C</td>
-                </tr>
-                <tr class="odd gradeA">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.5</td>
-                  <td>Win 95+</td>
-                  <td class="center">5.5</td>
-                  <td class="center">A</td>
-                </tr>
                 <tr class="even gradeA">
                   <td>Trident</td>
                   <td>Internet
                     Explorer 6</td>
                   <td>Win 98+</td>
                   <td class="center">6</td>
-                  <td class="center">A</td>
+                  <td class="center">
+                    <div> 
+                        <a><button class="btn btn-info"><i class="icon-pencil"></i>sửa</button></a>
+                        <a><button class="btn btn-danger"><i class="icon-info-sign"></i>xóa</button></a>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>
