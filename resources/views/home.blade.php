@@ -31,7 +31,7 @@
               <h3>Money back gurantee</h3>
             </a>
             <p>Shall open divide a one</p>
-          </div>
+          </div>  
         </div>
 
         <div class="col-lg-3 col-md-6">
@@ -91,17 +91,13 @@
                 </a>
                 <a href="#">
                   <i class="ti-heart"></i>
-                </a>
+                </a>  
               </div>
             </div>
             <div class="product-btm">
               <a href="#" class="d-block">
                 <h4>Latest men’s sneaker</h4>
               </a>
-              <div class="mt-3">
-                <span class="mr-4">$25.00</span>
-                <del>$35.00</del>
-              </div>
             </div>
           </div>
         </div>
@@ -117,19 +113,12 @@
                 <a href="#">
                   <i class="ti-heart"></i>
                 </a>
-                <a href="#">
-                  <i class="ti-shopping-cart"></i>
-                </a>
               </div>
             </div>
             <div class="product-btm">
               <a href="#" class="d-block">
                 <h4>Red women purses</h4>
               </a>
-              <div class="mt-3">
-                <span class="mr-4">$25.00</span>
-                <del>$35.00</del>
-              </div>
             </div>
           </div>
         </div>
@@ -145,19 +134,12 @@
                 <a href="#">
                   <i class="ti-heart"></i>
                 </a>
-                <a href="#">
-                  <i class="ti-shopping-cart"></i>
-                </a>
               </div>
             </div>
             <div class="product-btm">
               <a href="#" class="d-block">
                 <h4>Men stylist Smart Watch</h4>
               </a>
-              <div class="mt-3">
-                <span class="mr-4">$25.00</span>
-                <del>$35.00</del>
-              </div>
             </div>
           </div>
         </div>

@@ -107,7 +107,6 @@
 
               <div class="col-lg-5 pr-0">
                 <ul class="nav navbar-nav navbar-right right_nav pull-right">
-<<<<<<< HEAD
                   <li class="nav-item submenu dropdown">
                   <form action="">
                     <a href="#" href="#" class="icons nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -120,14 +119,6 @@
                     </ul>
                       </form>
                     </a>
-=======
-                  <li class="nav-item">
-                      <form class="form-inline "  style="width: 250px;padding-top:22px" method="get" action="{{asset('search')}}">
-                          <input class="form-control form-control-sm ml-3 w-75 " name="key"  type="text"  placeholder="Search"
-                                 aria-label="Search" >
-                          <button style="height: 30px;width: 30px" type="submit"> <span class="fa fa-search form-control-feedback"></span></button>
-                      </form>
->>>>>>> 9e5611107f159b9ce9aae030d0e5fe28458b2431
                   </li>
 
                   <li class="nav-item">

@@ -26,7 +26,8 @@ class Controller extends BaseController
 
 
     public function home(){
-        return view("home");
+        $categories=Category::all();
+        return view("home",['categories'=>$categories]);
         }
 
     public function product($id){
