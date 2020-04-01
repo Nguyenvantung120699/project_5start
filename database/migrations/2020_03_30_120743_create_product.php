@@ -24,6 +24,7 @@ class CreateProduct extends Migration
             $table->decimal('price',12,4);
             $table->unsignedInteger('quantity')->default(1);
             $table->tinyInteger("status")->default(1);
+            $table->unsignedInteger('purchase')->default(1);
             $table->timestamps();
 
             //khoa ngoai
