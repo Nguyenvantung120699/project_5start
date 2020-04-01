@@ -108,9 +108,11 @@
               <div class="col-lg-5 pr-0">
                 <ul class="nav navbar-nav navbar-right right_nav pull-right">
                   <li class="nav-item">
-                    <a href="#" class="icons">
-                      <i class="ti-search" aria-hidden="true"></i>
-                    </a>
+                      <form class="form-inline "  style="width: 250px;padding-top:22px" method="get" action="{{asset('search')}}">
+                          <input class="form-control form-control-sm ml-3 w-75 " name="key"  type="text"  placeholder="Search"
+                                 aria-label="Search" >
+                          <button style="height: 30px;width: 30px" type="submit"> <span class="fa fa-search form-control-feedback"></span></button>
+                      </form>
                   </li>
 
                   <li class="nav-item">
