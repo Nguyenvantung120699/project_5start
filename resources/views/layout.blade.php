@@ -13,7 +13,6 @@
 
 <section class="product-section">
 
-
         @yield('content')
 
 

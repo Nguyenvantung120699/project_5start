@@ -32,6 +32,7 @@
         </div>
       </div>
     </div>
+
     <div class="main_menu">
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light w-100">
@@ -64,6 +65,7 @@
                             @endforeach
                     </ul>
                   </li>
+
                     <li class="nav-item submenu dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">Brand</a>
@@ -75,6 +77,7 @@
                             @endforeach
                         </ul>
                     </li>
+
                   <li class="nav-item submenu dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                       aria-expanded="false">Blog</a>
@@ -87,6 +90,7 @@
                       </li>
                     </ul>
                   </li>
+
                   <li class="nav-item submenu dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                       aria-expanded="false">Pages</a>
@@ -99,6 +103,7 @@
                       </li>
                     </ul>
                   </li>
+
                   <li class="nav-item">
                     <a class="nav-link" href="{{url("contact")}}">Contact</a>
                   </li>
@@ -107,19 +112,14 @@
 
               <div class="col-lg-5 pr-0">
                 <ul class="nav navbar-nav navbar-right right_nav pull-right">
-                  <li class="nav-item submenu dropdown">
-                  <form action="">
-                    <a href="#" href="#" class="icons nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                      aria-expanded="false">
-                      <i class="ti-search" aria-hidden="true"></i>
-                      <ul class="dropdown-menu">
-                      <li class="nav-item">
-                        <input type="text" class="form-control" name="search" required placeholder="search">
-                      </li>
-                    </ul>
+                <li class="nav-item">
+                      <form class="form-inline "  style="width: 250px;padding-top:22px" method="get" action="{{asset('search')}}">
+                          <input class="form-control form-control-sm ml-3 w-75 " name="key"  type="text"  placeholder="Search"
+                                 aria-label="Search" >
+                          <button style="height: 30px;width: 30px" type="submit"> <span class="fa fa-search form-control-feedback"></span></button>
                       </form>
-                    </a>
                   </li>
+
 
                   <li class="nav-item">
                     <a href="{{url("/cart")}}" class="icons">
@@ -154,4 +154,5 @@
         </nav>
       </div>
     </div>
+
   </header>
