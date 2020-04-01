@@ -61,21 +61,16 @@ class Controller extends BaseController
         if($cart==null){
             $cart=[];
         }
-//        $cart_total = $request->session()->get("cart_total");
-//        if($cart_total == null) $cart_total =0;
         foreach ($cart as $p){
             if($p->id == $product->id){
                 $p->cart_qty =$p->cart_qty+1;
-//                $cart_total += $p->price;
                 session(["cart"=>$cart]);
                 return redirect()->to("/cart");
             }
         }
         $product->cart_qty=1;
         $cart[]=$product;
-//        $cart_total += $product->price;
         session(["cart"=>$cart]);
-//        session(["cart_total"=>$cart_total]);
         return redirect()->to("/cart");
     }
     public function cart(Request $request){
@@ -128,6 +123,12 @@ class Controller extends BaseController
             "status"=> Order::STATUS_PENDING
         ]);
         foreach ($cart as $p){
+            $product = Product::find($p->id);
+            $product->update([
+                "quantity" => $product->quantity-$p->cart_qty,
+
+
+            ]);
             DB::table("order_product")->insert([
                 'order_id'=> $order->id,
                 'product_id'=>$p->id,
@@ -140,5 +141,48 @@ class Controller extends BaseController
     }
     public function checkoutSuccess(){
         return view("checkoutSuccess");
+    }
+    public function getSearch(Request $request){
+        $product = Product::where('product_name','like','%'.$request->get("key").'%')->get();
+        return view("search",['products'=>$product]);
+    }
+    public function getListOrder(){
+
+        $listOrder =Order::where ("user_id",Auth::id())->get();
+        return view('listOrder',['listOrder'=>$listOrder]);
+    }
+    public function getOrderPurchased($id){
+        $order = Order::find($id);
+        $product=$order->Products;
+        return view('viewOrder',['product'=>$product,'order'=>$order]);
+    }
+
+    public function repurchase($id,Request $request){
+        $order = Order::find($id);
+        $product=$order->Products;
+
+        $grand_total = 0;
+        foreach ($product as $p) {
+            $grand_total+=$p->pivot->qty*$p->price;
+
+        }
+        $o = Order::create([
+            'user_id'=> Auth::id(),
+            'customer_name'=> $order->customer_name,
+            'shipping_address'=>$order->shipping_address,
+            'telephone'=> $order->telephone,
+            'grand_total'=> $grand_total,
+            'payment_method'=>$order->payment_method,
+            "status"=> Order::STATUS_PENDING
+        ]);
+        foreach ($product as $p){
+            DB::table("order_product")->insert([
+                'order_id'=> $o->id,
+                'product_id'=>$p->id,
+                'qty'=>$p->pivot->qty,
+                'price'=>$p->pivot->price
+            ]);
+        }
+        return redirect()->to("/checkout-success");
     }
 }

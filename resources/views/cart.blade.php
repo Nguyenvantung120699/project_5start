@@ -88,15 +88,13 @@
                         <tr class="bottom_button">
                             <td>
                                 <a class="gray_btn" href="{{url("/clear-cart")}}">Clear Cart</a>
+                                <a class="gray_btn" href="{{url("listOrder")}}">Orders purchased</a>
+                            </td>
+                            <td>
+
                             </td>
                             <td></td>
-                            <td></td>
                             <td>
-                                <div class="cupon_text">
-                                    <input type="text" placeholder="Coupon Code" />
-                                    <a class="main_btn" href="#">Apply</a>
-                                    <a class="gray_btn" href="#">Close Coupon</a>
-                                </div>
                             </td>
                         </tr>
                         <tr>
