@@ -8,7 +8,10 @@ class Product extends Model
 {
     protected $table = 'product';
 
-    protected $fillable =['product_name','product_desc','thumbnail','gallery','category_id','brand_id','price','quantity'];
+    protected $fillable =['product_name','product_desc','thumbnail','gallery','category_id','brand_id','price','quantity','status'];
+
+    const SHOW = 1;
+    const HIDE = 0;
 
     public function Category(){
         return $this->belongsTo("\App\Category");
