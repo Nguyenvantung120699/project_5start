@@ -29,12 +29,8 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
-    ];
-<<<<<<< HEAD
-=======
+    ]; 
 
-
->>>>>>> cf1ed46fd21094d5414c9ef8bd8c394894606407
     /**
      * The attributes that should be cast to native types.
      *

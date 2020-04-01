@@ -4,7 +4,7 @@
 <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-				<form class="login100-form validate-form " method="POST" action="{{ route('login') }}">
+				<form class="login100-form validate-form " method="POST" action="{{ route('register') }}">
                 @csrf
 					<span class="login100-form-title p-b-55">
                     {{ __('Register') }}
@@ -37,7 +37,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+						<input id="password" type="password" class="input100 form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@
 					</div>
 
                     <div class="wrap-input100 validate-input m-b-16" data-validate = "Confirm Password is required">
-						<input class="input100" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+						<input id="password-confirm" type="password" class="input100 form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                         <span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<span class="lnr lnr-lock"></span>

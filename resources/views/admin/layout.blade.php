@@ -48,6 +48,7 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
+    <li><a href="{{url("/")}}"><i class="icon icon-home"></i> <span>Eiser Home Page</span></a> </li>
     <li><a href="{{url("/home")}}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li> <a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
     <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
