@@ -95,7 +95,7 @@
                                 <a href="#"><span>Category</span> : {{$product->Category->category_name}}</a>
                             </li>
                             <li>
-                                <p><a href="#"> <span>Brand</span> : {{$product->Brand->brand_name}}</a></p>
+                                <p><a href="#"> <span>Brand</span> : {{$product->Brand->brand_name}}</a><br></p>
                                 <a href="#"> <span>Qty</span> : {{$product->quantity}}</a>
                             </li>
                         </ul>
