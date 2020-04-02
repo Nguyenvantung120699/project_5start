@@ -92,13 +92,11 @@
                         <h2>${{$product->getprice()}}</h2>
                         <ul class="list">
                             <li>
-                                <a class="active" href="#">
-                                    <span>Category</span> : Household</a
-                                >
+                                <a href="#"><span>Category</span> : {{$product->Category->category_name}}</a>
                             </li>
                             <li>
-                                <a href="#"> <span>Availibility</span> : In Stock</a>
-                                <a href="#"> <span>Quantity</span> : {{$product->quantity}}</a>
+                                <p><a href="#"> <span>Brand</span> : {{$product->Brand->brand_name}}</a></p>
+                                <a href="#"> <span>Qty</span> : {{$product->quantity}}</a>
                             </li>
                         </ul>
                         <p>

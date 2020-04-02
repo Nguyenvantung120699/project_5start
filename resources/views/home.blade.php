@@ -116,7 +116,7 @@
           <div class="offer_content">
             <h3 class="text-uppercase mb-40"><b>All brand products "Gom Bat Trang"</b></h3>
             <h2 class="text-uppercase"><b>50% off</b></h2>
-            <a href="" class="main_btn mb-20 mt-5">Discover Now</a>
+            <a href="{{url("/thuong-hieu/2")}}" class="main_btn mb-20 mt-5">Discover Now</a>
             <p><b>Limited Time Offer</b></p>
           </div>
         </div>
