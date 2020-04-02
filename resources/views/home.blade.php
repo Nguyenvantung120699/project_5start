@@ -80,13 +80,13 @@
         </div>
       </div>
       <div class="row">
-      @foreach(\App\Category::all() as $c)
+      @foreach($categories as $c) 
         <div class="col-lg-4 col-md-6">
           <div class="single-product">
-            <div class="product-img">
-              <img class="img-fluid w-100" src="https://lh3.googleusercontent.com/proxy/FvX4X-wDy9okvOjOvV3z-WYtI1i3Q10LG9f-fNogQUs-Gzt9kM5EoXWNh7AdwMCQ5-And3EN_NWL257WeWouChN1kEHUABFGmthvvNRMN2ie8RnQ68NUjpqeLXxzowcBXEqtCx6pfoj8L4DRQFgmqwfuAgAYDfvhenPajAjDxK4gwHbMMp5nvh11eg" alt="" />
+            <div class="product-img ">
+              <img class="img-fluid w-100" src="https://dulichvietnam.com.vn/data/News/lang-nghe-viet.jpg" alt="" />
               <div class="p_icon">
-                <a href="{{url("/danh-muc/{$c->id}")}}">
+                <a href="{{url("/danh-muc/{$c->id}")}}">  
                   <i class="ti-eye"></i>
                 </a>
                 <a href="">
@@ -111,14 +111,61 @@
       <div class="row justify-content-center">
         <div class="offset-lg-4 col-lg-6 text-center">
           <div class="offer_content">
-            <h3 class="text-uppercase mb-40">all men’s collection</h3>
-            <h2 class="text-uppercase">50% off</h2>
+            <h3 class="text-uppercase mb-40"><b>All brand products "Gom Bat Trang"</b></h3>
+            <h2 class="text-uppercase"><b>50% off</b></h2>
             <a href="" class="main_btn mb-20 mt-5">Discover Now</a>
-            <p>Limited Time Offer</p>
+            <p><b>Limited Time Offer</b></p>
           </div>
         </div>
       </div>
     </div>
   </section>
   <!--================ End Offer Area =================-->
+  <section style="padding-top:5%" class="feature_product_area section_gap_bottom_custom">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="main_title">  
+            <h2><span>Top Selling Products</span></h2>
+            <p>The products below are many people choose and love</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      @foreach($purchased as $p)
+          <div class="col-lg-3 col-md-6">
+              <div class="single-product">
+                  <div class="product-img">
+                      <img
+                          class="card-img"
+                          src="{{asset($p->thumbnail)}}"
+                          alt=""
+                      />
+                      <div class="p_icon">
+                          <a href="{{url("san-pham/{$p->id}")}}">
+                              <i class="ti-eye"></i>
+                          </a>
+                          <a href="#">
+                              <i class="ti-heart"></i>
+                          </a>
+                          <a href="{{url("shopping/{$p->id}")}}">
+                              <i class="ti-shopping-cart"></i>
+                          </a>
+                      </div>
+                  </div>
+                  <div class="product-btm">
+                      <a href="#" class="d-block">
+                          <h4>{{$p->product_name}}</h4>
+                      </a>
+                      <div class="mt-3">
+                          <span class="mr-4">{{$p->price}}</span>
+                          <del>{{$p->price}}</del>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          @endforeach
+      </div>
+    </div>
+  </section>
   @endsection

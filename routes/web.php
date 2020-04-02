@@ -1,5 +1,5 @@
 <?php
-Route::prefix("admin")->group(function (){
+Route::prefix("admin")->middleware(['auth',"checkAdmin"])->group(function (){
     include_once("admin.php");
 });
 
@@ -59,7 +59,7 @@ dd($orders);
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/log-out',function (){
+Route::get('/logout',function (){
    \Illuminate\Support\Facades\Auth::logout();
    return redirect()->to("/login");
 });

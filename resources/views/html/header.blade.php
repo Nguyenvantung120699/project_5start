@@ -139,6 +139,10 @@
                       <li class="nav-item">
                         <a class="nav-link" href="{{url("/admin/home")}}">Admin</a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{url("/logout")}}">Logout</a>
+                      </li>
+                    
                     </ul>
                   </li>
 
