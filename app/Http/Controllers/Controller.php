@@ -28,9 +28,7 @@ class Controller extends BaseController
     public function home(){
         $categories=Category::all();
         $purchased = Product::orderBy('purchase','desc')->take(8)->get();
-
-        $image_category = Product::where('category_id','>=1')->value('thumbnail');
-        return view("home",['categories'=>$categories,'purchased'=>$purchased,'image_category'=>$image_category]);
+        return view("home",['categories'=>$categories,'purchased'=>$purchased]);
         }
 
     public function product($id){
