@@ -7,7 +7,7 @@
 @section("main_content")
 
 <div id="loginbox">            
-            <form id="loginform" class="form-vertical" action="{{url("admin/product/update",['id'=>$product->id])}}"  method="post">
+            <form id="loginform" class="form-vertical" action="{{url("admin/product/update",['id'=>$products->id])}}"  method="post">
                 @csrf
 				 <div class="control-group normal_text"> <h3><img src="{{asset("admin/html/img/logo.png")}}" alt="Logo" /></h3></div>
                 <div class="control-group">
@@ -57,7 +57,7 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box col-md-12">
-                            <select class="form-group form-control" name="category_id" required>
+                            <select style="width:77%;height:38px" class="form-group form-control" name="category_id" required>
                             @php
                                 $category = \App\Category::all();
                             @endphp
@@ -72,7 +72,7 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <select class="form-group form-control" name="brand_id" required>
+                            <select style="width:77%;height:38px" class="form-group form-control" name="brand_id" required>
                             @php
                                 $brand = \App\Brand::all();
                             @endphp

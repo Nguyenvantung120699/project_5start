@@ -46,7 +46,7 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <span class="add-on bg_lg"><i class="icon-lock"> </i></span><input type="text" name="role" type="text"  value="{{$user->role}}"
+                            <span class="add-on bg_lg"><i class="icon-user"> </i></span><input type="text" name="role" type="text"  value="{{$user->role}}"
                                class="form-control cc-name @if($errors->has("role"))is-invalid @endif" placeholder="role" />
                                @if($errors->has("role"))
                                 <p style="color:red">{{$errors->first("role")}}</p>

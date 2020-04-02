@@ -84,7 +84,10 @@
         <div class="col-lg-4 col-md-6">
           <div class="single-product">
             <div class="product-img ">
-              <img class="img-fluid w-100" src="https://dulichvietnam.com.vn/data/News/lang-nghe-viet.jpg" alt="" />
+            <?php $product =\App\Product::where("category_id",$c->id)->take(1)->get(); ?>
+            @foreach($product as $p)
+              <img class="img-fluid w-100" src="{{$p->thumbnail}}" alt="" />
+              @endforeach
               <div class="p_icon">
                 <a href="{{url("/danh-muc/{$c->id}")}}">  
                   <i class="ti-eye"></i>

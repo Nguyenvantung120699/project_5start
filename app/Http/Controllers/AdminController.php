@@ -165,15 +165,15 @@ class AdminController extends Controller
 
     public function productEdit($id){
 
-        $product = Product::find($id);
-        return view("admin.product.edit",['product'=>$product]);
+        $products = Product::find($id);
+        return view("admin.product.edit",['products'=>$products]);
     }
 
     public function productUpdate($id,Request $request){
         $product = Product::find($id);
         $request->validate([
             "product_name" =>
-                "required|string|unique:product,product_name," . $id,
+            "required|string|unique:product,product_name," . $id,
             "product_desc" => "required|string",
             "thumbnail" => "required|string",
             "category_id" => "required|integer",
@@ -248,7 +248,6 @@ class AdminController extends Controller
             "password"=> "required|string|min:8:users,password,".$id,
             "role"=> "required|Integer:users,role,".$id,
         ]);
-
         try{
             $user->update([
                 "name"=> $request->get("name"),
