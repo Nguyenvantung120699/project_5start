@@ -531,7 +531,7 @@
                                 </div>
                             </div>
                             <div class="review_list">
-                                @forelse ($rate as $r)
+                                @forelse ($ratenew as $r)
                                 <div class="review_item">
                                     <div class="media">
                                         <div class="d-flex">
@@ -572,6 +572,10 @@
                                     @empty
                                     <p>Chung no chua danh gia</p>
                                     @endforelse
+
+                                    <div class="product_pagination">
+                                        {!! $ratenew->links() !!}
+                                    </div>
                             </div>
                         </div>
                         <div class="col-lg-6">

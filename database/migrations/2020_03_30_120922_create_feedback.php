@@ -21,7 +21,6 @@ class CreateFeedback extends Migration
             $table->string("name");
             $table->string("email",191);
             $table->string("message");
-
             $table->foreign("product_id")->references("id")->on("product");
         });
     }

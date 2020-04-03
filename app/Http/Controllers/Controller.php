@@ -40,11 +40,12 @@ class Controller extends BaseController
     public function product($id){
         $product=Product::find($id);
         $rate=Feedback_product::where("product_id",$product->id)->get();
+        $ratenew=Feedback_product::where("product_id",$product->id)->paginate(4);
         $brand = Brand::find($product->brand_id);
         $img =explode(",",$product->gallery);
         $category_product =Product::where("category_id",$product->category_id)->where('id',"!=",$product->id)->take(10)->get();
         $brand_product =Product::where("brand_id",$product->brand_id)->where('id',"!=",$product->id)->take(10)->get();
-        return view('productView',['product'=>$product,'category_product'=>$category_product,'brand_product'=>$brand_product,'brand'=>$brand,'img'=>$img,'rate'=>$rate]);
+        return view('productView',['product'=>$product,'category_product'=>$category_product,'brand_product'=>$brand_product,'brand'=>$brand,'img'=>$img,'rate'=>$rate,'ratenew'=>$ratenew]);
     }
     public function contact(){
         return view("contact");
