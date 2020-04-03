@@ -85,8 +85,22 @@ class AdminController extends Controller
             "category_name"=> "required|string|unique:category"
         ]);
         try{
+            $image=null;
+            $ext_allow =["png","jpg","jpeg","gif","svg"];
+            if($request->hasFile("image")){
+                $file =$request->file("image");
+                $filename=time()."-". $file->getClientOriginalName();//lay ten file
+                $ext=$file->getClientOriginalExtension();//lay duoi file
+                if (in_array($ext,$ext_allow)){
+                    $file->move("upload",$filename);
+                    $image="upload/".$filename;
+                }
+
+
+            }
             Category::create([
-                "category_name"=> $request->get("category_name")
+                "category_name"=> $request->get("category_name"),
+                'image'=>$image
             ]);
         }catch(\Exception $e){
             return redirect()->back();
@@ -105,8 +119,22 @@ class AdminController extends Controller
             "category_name"=> "required|string|unique:category,category_name,".$id
         ]);
         try {
+            $image=null;
+            $ext_allow =["png","jpg","jpeg","gif","svg"];
+            if($request->hasFile("image")){
+                $file =$request->file("image");
+                $filename=time()."-". $file->getClientOriginalName();//lay ten file
+                $ext=$file->getClientOriginalExtension();//lay duoi file
+                if (in_array($ext,$ext_allow)){
+                    $file->move("upload",$filename);
+                    $image="upload/".$filename;
+                }
+
+
+            }
             $categories->update([
-                "category_name"=> $request->get('category_name')
+                "category_name"=> $request->get('category_name'),
+                'image'=>$image
             ]);
         }catch (\Exception $e){
             return redirect()->back();

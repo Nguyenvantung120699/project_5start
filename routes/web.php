@@ -40,7 +40,11 @@ Route::get("test",function (){
     $product=\App\Product::find(2);
     $rate=\App\Feedback_product::where("product_id",$product->id)->get();
     $rate5 =\App\Feedback_product::where("product_id",$product->id)->where("rate",5)->get();
-    dd($rate);
+    if(\Illuminate\Support\Facades\Auth::check()){
+        echo \Illuminate\Support\Facades\Auth::user()->name;
+    } else {
+       echo "Guest";
+    }
 });
 
 

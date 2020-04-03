@@ -6,8 +6,8 @@
 
 @section("main_content")
 
-<div id="loginbox">            
-            <form id="loginform" class="form-vertical" action="{{url("admin/category/update",['id'=>$categories->id])}}"  method="post">
+<div id="loginbox">
+            <form id="loginform" class="form-vertical" action="{{url("admin/category/update",['id'=>$categories->id])}}"  method="post" enctype="multipart/form-data">
                 @csrf
 				 <div class="control-group normal_text"> <h3><img src="{{asset("admin/html/img/logo.png")}}" alt="Logo" /></h3></div>
                 <div class="control-group">
@@ -18,6 +18,10 @@
                                @if($errors->has("category_name"))
                                 <p style="color:red">{{$errors->first("category_name")}}</p>
                             @endif
+                            <div class="form-group has-success">
+                                <label for="cc-name" class="control-label mb-1">Avatar</label>
+                                <input name="image" type="file" value="{{old("image")}}" class="form-control cc-name">
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@
     <div class="quick-actions_homepage">
         <div><a href="{{url('admin/category/create')}}"><button class="btn btn-success">Create Category<i class="icon-plus"></i></button></a></div>
     </div>
-  </div>  
+  </div>
 @endsection
 
 @section("main_content")
@@ -22,6 +22,7 @@
                 <thead>
                 <tr>
                     <th>ID</th>
+                    <th>IMG</th>
                     <th>name</th>
                     <th>created at</th>
                     <th>updated at</th>
@@ -32,6 +33,7 @@
                 @forelse($categories as $c)
                     <tr class="tr-shadow">
                         <td>{{$c->id}}</td>
+                        <td><img src="{{asset($c->image)}} " class="img-thumbnail"></td>
                         <td>{{$c->category_name}}</td>
                         <td>{{$c->created_at}}</td>
                         <td>{{$c->updated_at}}</td>
