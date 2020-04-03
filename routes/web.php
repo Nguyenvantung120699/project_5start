@@ -36,8 +36,11 @@ Route::get("search",'Controller@getSearch');
 Route::post("feedback",'Controller@feedback');
 Auth::routes();
 
-Route::get("lknn",function (){
-
+Route::get("test",function (){
+    $product=\App\Product::find(2);
+    $rate=\App\Feedback_product::where("product_id",$product->id)->get();
+    $rate5 =\App\Feedback_product::where("product_id",$product->id)->where("rate",5)->get();
+    dd($rate);
 });
 
 

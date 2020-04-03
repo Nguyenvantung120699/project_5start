@@ -463,13 +463,18 @@
                                 <div class="col-6">
                                     <div class="box_total">
                                         <h5>Overall</h5>
-                                        <h4>4.0</h4>
-                                        <h6>(03 Reviews)</h6>
+                                        <h4 >{{number_format($rate->avg('rate'),2)}}</h4>
+                                        @if(!count($rate)==0)
+                                            <h6>({{count($rate)}} Reviews)</h6>
+                                        @else
+                                            <h6>(No Reviews)</h6>
+                                        @endif
+
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="rating_list">
-                                        <h3>Based on 3 Reviews</h3>
+                                        <h3>Based on {{count($rate)}} Reviews</h3>
                                         <ul class="list">
                                             <li>
                                                 <a href="#"
@@ -478,7 +483,7 @@
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> 01</a
+                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",5))}}</a
                                                 >
                                             </li>
                                             <li>
@@ -488,7 +493,7 @@
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> 01</a
+                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",4))}}</a
                                                 >
                                             </li>
                                             <li>
@@ -498,7 +503,7 @@
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> 01</a
+                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",3))}}</a
                                                 >
                                             </li>
                                             <li>
@@ -508,7 +513,7 @@
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> 01</a
+                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",2))}}</a
                                                 >
                                             </li>
                                             <li>
@@ -518,7 +523,7 @@
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> 01</a
+                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",1))}}</a
                                                 >
                                             </li>
                                         </ul>
@@ -526,6 +531,7 @@
                                 </div>
                             </div>
                             <div class="review_list">
+                                @forelse ($rate as $r)
                                 <div class="review_item">
                                     <div class="media">
                                         <div class="d-flex">
@@ -535,69 +541,37 @@
                                             />
                                         </div>
                                         <div class="media-body">
-                                            <h4>Blake Ruiz</h4>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
+                                            <h4>{{$r->name}}</h4>
+                                            @if($r->rate==5)
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            @elseif($r->rate==4)
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            @elseif($r->rate==3)
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            @elseif($r->rate==2)
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                @else
+                                                <i class="fa fa-star"></i>
+                                            @endif
                                         </div>
                                     </div>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo
+                                        {{$r->message}}
                                     </p>
                                 </div>
-                                <div class="review_item">
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img
-                                                src="img/product/single-product/review-2.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Blake Ruiz</h4>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo
-                                    </p>
-                                </div>
-                                <div class="review_item">
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img
-                                                src="img/product/single-product/review-3.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Blake Ruiz</h4>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo
-                                    </p>
-                                </div>
+                                    @empty
+                                    <p>Chung no chua danh gia</p>
+                                    @endforelse
                             </div>
                         </div>
                         <div class="col-lg-6">
