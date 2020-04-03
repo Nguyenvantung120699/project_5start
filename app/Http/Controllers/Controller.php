@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Feedback_product;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -30,14 +31,20 @@ class Controller extends BaseController
         $purchased = Product::orderBy('purchase','asc')->take(8)->get();
         return view("home",['categories'=>$categories,'purchased'=>$purchased]);
         }
-
+    public function rate(){
+        $product=\App\Product::find(2);
+        $rate = \App\Feedback_product::where("product_id",$product->id)->get();
+//        dd($rate);
+        return view("star",['rate'=>$rate]);
+    }
     public function product($id){
         $product=Product::find($id);
+        $rate=Feedback_product::where("product_id",$product->id)->get();
         $brand = Brand::find($product->brand_id);
         $img =explode(",",$product->gallery);
         $category_product =Product::where("category_id",$product->category_id)->where('id',"!=",$product->id)->take(10)->get();
         $brand_product =Product::where("brand_id",$product->brand_id)->where('id',"!=",$product->id)->take(10)->get();
-        return view('productView',['product'=>$product,'category_product'=>$category_product,'brand_product'=>$brand_product,'brand'=>$brand,'img'=>$img]);
+        return view('productView',['product'=>$product,'category_product'=>$category_product,'brand_product'=>$brand_product,'brand'=>$brand,'img'=>$img,'rate'=>$rate]);
     }
     public function contact(){
         return view("contact");
@@ -138,11 +145,33 @@ class Controller extends BaseController
                 'price'=>$p->price
             ]);
         }
-        session()->forget('cart');
         return redirect()->to("/checkout-success");
     }
     public function checkoutSuccess(){
         return view("checkoutSuccess");
+    }
+    public function feedback(Request $request){
+        $request->validate([
+            'customer_name'=> 'required | string',
+            'email' => 'required',
+            'telephone'=> 'required',
+            'rate'=>'required',
+            'message'=> 'required',
+        ]);
+
+        $cart = $request->session()->get('cart');
+            foreach ($cart as $p){
+                DB::table("feedback")->insert ([
+                    'product_id'=> $p->id,
+                    'name'=> $request->get("customer_name"),
+                    'email'=> $request->get("email"),
+                    'telephone'=> $request->get("telephone"),
+                    'rate'=> $request->get("rate"),
+                    'message'=> $request->get("message"),
+                ]);
+            }
+        session()->forget('cart');
+        return redirect()->to("/");
     }
     public function getSearch(Request $request){
         $product = Product::where('product_name','like','%'.$request->get("key").'%')->get();

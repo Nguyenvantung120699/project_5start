@@ -12,3 +12,5 @@
 <script src="{{asset("vendors/counter-up/jquery.counterup.js")}}"></script>
 <script src="{{asset("js/mail-script.js")}}"></script>
 <script src="{{asset("js/theme.js")}}"></script>
+<script src="{{asset("dist/rating.js")}}"></script>
+

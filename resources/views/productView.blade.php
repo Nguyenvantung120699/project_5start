@@ -700,6 +700,4 @@
             </div>
         </div>
     </section>
-
-
 @endsection

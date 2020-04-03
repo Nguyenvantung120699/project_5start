@@ -61,7 +61,7 @@
                                             </div>
                                         </div>
                                         <div class="product-btm">
-                                            <a href="" class="d-block">
+                                            <a href="{{url("san-pham/{$p->id}")}}" class="d-block">
                                                 <h4>{{$p->product_name}}</h4>
                                             </a>
                                             <div class="mt-3">
