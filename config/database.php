@@ -15,8 +15,8 @@ return [
     |
     */
 
-      'default' => env('DB_CONNECTION', 'mysql'),
-//    'default' => "pgsql",
+    //  'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => "pgsql",
     /*
     |--------------------------------------------------------------------------
     | Database Connections
@@ -64,13 +64,13 @@ return [
         ],
 
         'pgsql' => [
-             'driver' => 'pgsql',
+            // 'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' =>env('DB_HOST', '127.0.0.1'),//"ec2-3-231-46-238.compute-1.amazonaws.com", //
-            'port' =>env('DB_PORT', '5432'),//5432, //
-            'database' =>env('DB_DATABASE', 'forge'),// "d1cokiarcge2ia   ", //
-            'username' => env('DB_USERNAME', 'forge'),//"mxuzijoylofyqg", //
-            'password' =>env('DB_PASSWORD', ''),// "0e6e44f6d6d745d745facaa8d37c8cfab9a22b988cfb75fb36ec68c38cb538c6", //
+            'host' =>"ec2-3-231-46-238.compute-1.amazonaws.com", //env('DB_HOST', '127.0.0.1'),
+            'port' =>5432, //env('DB_PORT', '5432'),
+            'database' => "d1cokiarcge2ia   ", //env('DB_DATABASE', 'forge'),
+            'username' => "mxuzijoylofyqg", //env('DB_USERNAME', 'forge'),
+            'password' => "0e6e44f6d6d745d745facaa8d37c8cfab9a22b988cfb75fb36ec68c38cb538c6", //env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
