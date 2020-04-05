@@ -1,9 +1,8 @@
 @extends("admin.layout")
-
+<script src="{{asset("js/jquery-3.2.1.min.js")}}"></script>
 @section("top_content")
 <h2>Create Category</h2>
 @endsection
-
 @section("main_content")
 
 <div id="loginbox">
@@ -20,8 +19,8 @@
                             @endif
                         </div>
                         <div class="form-group has-success">
-                            <label for="cc-name" class="control-label mb-1">Avatar</label>
-                            <input name="image" type="file" value="{{old("image")}}" class="form-control cc-name">
+                            <label for="cc-name" class="control-label mb-1">Images</label>
+                            <input name="image" type="file" value="{{old("image")}}" class="form-control cc-name" >
                         </div>
                     </div>
                 </div>

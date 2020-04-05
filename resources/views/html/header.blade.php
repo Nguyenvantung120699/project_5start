@@ -4,8 +4,10 @@
             <div class="row">
                 <div class="col-lg-7">
                     <div class="float-left">
-                        <p>Phone: +84 256 25 235</p>
-                        <p>email: info@eiser.com</p>
+                        <p>{{trans('header.phone')}}</p>
+                        <p>{{trans('header.email')}}</p>
+                        <a href="{{asset('/setLocal-vn')}}">Tiếng Việt</a>
+                        <a href="{{asset('/setLocal-en')}}">English</a>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -13,17 +15,17 @@
                         <ul class="right_side">
                             <li>
                                 <a href="{{url("cart")}}">
-                                    gift card
+                                    {{trans('header.gift')}}
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    track order
+                                    {{trans('header.trackorder')}}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{url("contact")}}">
-                                    Contact Us
+                                    {{trans('header.contact')}}
                                 </a>
                             </li>
                         </ul>
@@ -52,11 +54,11 @@
                         <div class="col-lg-7 pr-0">
                             <ul class="nav navbar-nav center_nav pull-right">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{url("/")}}">Home</a>
+                                    <a class="nav-link" href="{{url("/")}}"> {{trans('header.home')}}</a>
                                 </li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Category</a>
+                                       aria-expanded="false">{{trans('header.category')}}</a>
                                     <ul class="dropdown-menu">
                                         @foreach(\App\Category::all() as $c)
                                             <li class="nav-item">
@@ -68,7 +70,7 @@
 
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Brand</a>
+                                       aria-expanded="false">{{trans('header.brand')}}</a>
                                     <ul class="dropdown-menu">
                                         @foreach(\App\Brand::all() as $c)
                                             <li class="nav-item">
@@ -105,7 +107,7 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{url("contact")}}">Contact</a>
+                                    <a class="nav-link" href="{{url("contact")}}">{{trans('header.contact')}}</a>
                                 </li>
                             </ul>
                         </div>

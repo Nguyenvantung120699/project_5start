@@ -3,13 +3,12 @@
 
 
 @section('content')
-
     <section class="home_banner_area mb-40">
         <div class="banner_inner d-flex align-items-center">
             <div class="container">
                 <div class="banner_content row">
                     <div class="col-lg-12">
-                        <p class="sub text-uppercase">Collection of handicrafts</p>
+                        <p class="sub text-uppercase">{{trans('home.banner_content')}}</p>
                         <h3><span>Meet </span> Your  <br />Aesthetic  <span>Gaze</span></h3>
                         <h4>Bring the essence of art with high spiritual values</h4>
                         <a class="main_btn mt-40" href="">View Collection</a>

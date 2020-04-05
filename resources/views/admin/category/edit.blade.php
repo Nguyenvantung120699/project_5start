@@ -20,7 +20,7 @@
                             @endif
                             <div class="form-group has-success">
                                 <label for="cc-name" class="control-label mb-1">Avatar</label>
-                                <input name="image" type="file" value="{{old("image")}}" class="form-control cc-name">
+                                <input name="image" type="file" value="{{old("image")}}" class="form-control cc-name" placeholder="image">
                             </div>
                         </div>
                     </div>

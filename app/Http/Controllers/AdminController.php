@@ -92,8 +92,8 @@ class AdminController extends Controller
                 $filename=time()."-". $file->getClientOriginalName();//lay ten file
                 $ext=$file->getClientOriginalExtension();//lay duoi file
                 if (in_array($ext,$ext_allow)){
-                    $file->move("upload",$filename);
-                    $image="upload/".$filename;
+                    $file->move("upload/category/",$filename);
+                    $image="upload/category/".$filename;
                 }
 
 
@@ -126,8 +126,8 @@ class AdminController extends Controller
                 $filename=time()."-". $file->getClientOriginalName();//lay ten file
                 $ext=$file->getClientOriginalExtension();//lay duoi file
                 if (in_array($ext,$ext_allow)){
-                    $file->move("upload",$filename);
-                    $image="upload/".$filename;
+                    $file->move("upload/category/",$filename);
+                    $image="upload/category/".$filename;
                 }
 
 

@@ -102,41 +102,46 @@
                         <p>
                             {{$product->product_desc}}
                         </p>
-                        <div class="product_count">
-                            <label for="qty">Quantity:</label>
-                            <input
-                                type="text"
-                                name="qty"
-                                id="sst"
-                                maxlength="12"
-                                value="1"
-                                title="Quantity:"
-                                class="input-text qty"
-                            />
-                            <button
-                                onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                class="increase items-count"
-                                type="button"
-                            >
-                                <i class="lnr lnr-chevron-up"></i>
-                            </button>
-                            <button
-                                onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                class="reduced items-count"
-                                type="button"
-                            >
-                                <i class="lnr lnr-chevron-down"></i>
-                            </button>
-                        </div>
-                        <div class="card_area">
-                            <a class="main_btn" href="{{url("shopping/{$product->id}")}}">Add to Cart</a>
-                            <a class="icon_btn" href="#">
-                                <i class="lnr lnr lnr-diamond"></i>
-                            </a>
-                            <a class="icon_btn" href="#">
-                                <i class="lnr lnr lnr-heart"></i>
-                            </a>
-                        </div>
+                        <form action="{{url("shopping/{$product->id}")}}" method="post">
+                            @csrf
+
+                            <div class="product_count">
+                                <label for="qty">Quantity:</label>
+                                <input
+                                    type="text"
+                                    name="qty"
+                                    id="sst"
+                                    maxlength="12"
+                                    value="1"
+                                    title="Quantity:"
+                                    class="input-text qty"
+                                />
+                                <button
+                                    onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                    class="increase items-count"
+                                    type="button"
+                                >
+                                    <i class="lnr lnr-chevron-up"></i>
+                                </button>
+                                <button
+                                    onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                    class="reduced items-count"
+                                    type="button"
+                                >
+                                    <i class="lnr lnr-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div class="card_area">
+                                <button class="main_btn" type="submit">Add to Cart</button>
+                                <a class="icon_btn" href="#">
+                                    <i class="lnr lnr lnr-diamond"></i>
+                                </a>
+                                <a class="icon_btn" href="#">
+                                    <i class="lnr lnr lnr-heart"></i>
+                                </a>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>

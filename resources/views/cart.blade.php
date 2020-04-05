@@ -30,6 +30,7 @@
                             <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Total</th>
+                            <th scope="col">XXXX</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -63,23 +64,30 @@
                                         class="input-text qty"
                                     />
                                     <button
-                                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                                         class="increase items-count"
                                         type="button"
                                     >
-                                        <i class="lnr lnr-chevron-up"></i>
+                                        <a href="{{url("/increaseOne/{$p->id}")}}"> <i class="lnr lnr-chevron-up"></i></a>
                                     </button>
-                                    <button
-                                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                        class="reduced items-count"
-                                        type="button"
+
+                                    @if( $p->cart_qty>1)
+                                    <button class="reduced items-count" type="button" id="reduceOne"
                                     >
-                                        <i class="lnr lnr-chevron-down"></i>
+                                        <a  href="{{url("/reduceOne/{$p->id}")}}"> <i class="lnr lnr-chevron-down"></i></a>
                                     </button>
+                                        @else
+                                        <button class="reduced items-count" type="button" disabled="disabled"
+                                        >
+                                            <a > <i class="lnr lnr-chevron-down"></i></a>
+                                        </button>
+                                    @endif
                                 </div>
                             </td>
                             <td>
                                 <h5>${{($p->cart_qty*$p->price)}}</h5>
+                            </td>
+                            <td>
+                                <h5><a href="{{url("/deleteItemCart/{$p->id}")}}">Xoa</a></h5>
                             </td>
                         </tr>
                         @empty

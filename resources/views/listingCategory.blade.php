@@ -10,7 +10,7 @@
                         <p>Very us move be blessed multiply night</p>
                     </div>
                     <div class="page_link">
-                        <a href="{{url("/")}}">Home</a>
+                        <a href="{{url("/")}}">{{trans('category.home')}}</a>
                         <a href="#">Shop Category</a>
                         <a href="#">{{$category->category_name}}</a>
                     </div>
