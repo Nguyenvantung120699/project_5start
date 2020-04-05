@@ -56,7 +56,7 @@
                                 </li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Category</a>
+                                       aria-expanded="false">Shop</a>
                                     <ul class="dropdown-menu">
                                         @foreach(\App\Category::all() as $c)
                                             <li class="nav-item">
@@ -66,7 +66,7 @@
                                     </ul>
                                 </li>
 
-                                <li class="nav-item submenu dropdown">
+                                <!-- <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">Brand</a>
                                     <ul class="dropdown-menu">
@@ -76,7 +76,7 @@
                                             </li>
                                         @endforeach
                                     </ul>
-                                </li>
+                                </li> -->
 
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -141,6 +141,9 @@
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">My Account</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{url("/listOrder")}}">Lịch Sử Đơn Hàng</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{url("/admin/home")}}">Admin</a>

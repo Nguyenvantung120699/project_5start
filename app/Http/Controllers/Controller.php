@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Feedback_product;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -11,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+
+use App\Feedback_product;
 use App\Mail\OrederCreate;
 use App\Product;
 use App\Category;
@@ -28,7 +29,7 @@ class Controller extends BaseController
 
     public function home(){
         $categories=Category::all();
-        $purchased = Product::orderBy('purchase','asc')->take(8)->get();
+        $purchased = Product::orderBy('purchase','desc')->take(8)->get();
         return view("home",['categories'=>$categories,'purchased'=>$purchased]);
         }
     public function rate(){
@@ -136,6 +137,7 @@ class Controller extends BaseController
             $product = Product::find($p->id);
             $product->update([
                 "quantity" => $product->quantity-$p->cart_qty,
+                "purchase" => $product->purchase+$p->cart_qty,
 
 
             ]);
