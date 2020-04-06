@@ -27,6 +27,8 @@
                     <th>Category</th>
                     <th>Quantity</th>
                     <th>Price</th>
+                    <th>Thumbnail</th>
+                    <th>Gallery</th>
                     <th>Created at</th>
                     <th>Updated at</th>
                     <th>Actions</th>
@@ -41,6 +43,10 @@
                         <td data-target="category_name">{{ $p->Category->category_name }}</td>
                         <td data-target="quantity" class="number">{{ $p->quantity }}</td>
                         <td data-target="price" class="number">{{ number_format($p->price, 2) }}</td>
+                        <td data-target="thumbnail" style="width:10%">
+                            <img style="width:100%;height:auto" src="{{asset($p->thumbnail)}}" alt=""/>
+                        </td>
+                        <td data-target="gallery" style="width:10%"><img style="width:100%;height:auto" src="{{asset($p->gallery)}}" alt=""></td>
                         <td>{{ $p->created_at }}</td>
                         <td>{{ $p->updated_at }}</td>
                         <td>

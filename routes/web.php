@@ -2,8 +2,13 @@
 
 
 
-Route::prefix("admin")->group(function (){
+Route::prefix("admin")->middleware(['auth',"checkAdmin"])->group(function (){
     include_once("admin.php");
+});
+
+Route::get('setLocal-{lang}', function($lang) {
+    \Illuminate\Support\Facades\Session::put('lang', $lang);
+    return back();
 });
 
 
@@ -17,11 +22,6 @@ Route::prefix("admin")->group(function (){
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('setLocal-{lang}', function($lang) {
-    \Illuminate\Support\Facades\Session::put('lang', $lang);
-    return back();
-});
-
 Route::get("/","Controller@home");
 Route::get("/danh-muc/{id}","Controller@listingCategory");
 Route::get("/thuong-hieu/{id}","Controller@listingBrand");
@@ -63,7 +63,10 @@ Route::get("test",function (){
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/log-out',function (){
+Route::get('/logout',function (){
    \Illuminate\Support\Facades\Auth::logout();
    return redirect()->to("/login");
 });
+
+
+Route::post("postLogin","Controller@postLogin");

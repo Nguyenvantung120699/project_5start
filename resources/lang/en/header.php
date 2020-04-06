@@ -6,7 +6,13 @@ return[
     "trackorder"=>"TRACK ORDER",
     "contact"=>"CONTACT US",
     "home"=>"home",
-    "category"=>"category",
+    "category"=>"Shop",
     "brand"=>"brand",
+    "search"=>"Search",
+
+    "user"=>"login",
+    "order"=>"order history",
+    "admin"=>"Admin",
+    "logout"=>"logout",
 
 ];

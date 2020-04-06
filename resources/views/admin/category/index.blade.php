@@ -22,7 +22,7 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>IMG</th>
+                    <th>image</th>
                     <th>name</th>
                     <th>created at</th>
                     <th>updated at</th>
@@ -33,7 +33,7 @@
                 @forelse($categories as $c)
                     <tr class="tr-shadow">
                         <td>{{$c->id}}</td>
-                        <td><img src="{{asset($c->image)}} " class="img-thumbnail"></td>
+                        <td><img style="width:20%;height:auto" src="{{asset($c->image)}}" alt=""></td>
                         <td>{{$c->category_name}}</td>
                         <td>{{$c->created_at}}</td>
                         <td>{{$c->updated_at}}</td>

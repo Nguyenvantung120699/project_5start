@@ -7,7 +7,7 @@
 @section("main_content")
 
 <div id="loginbox">            
-            <form id="loginform" class="form-vertical" action="{{url("admin/product/update",['id'=>$products->id])}}"  method="post">
+            <form id="loginform" class="form-vertical" action="{{url("admin/product/update",['id'=>$products->id])}}"  enctype="multipart/form-data" method="post">
                 @csrf
 				 <div class="control-group normal_text"> <h3><img src="{{asset("admin/html/img/logo.png")}}" alt="Logo" /></h3></div>
                 <div class="control-group">
@@ -35,22 +35,16 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <input type="text" name="thumbnail" type="text" value="{{$products->thumbnail}}""
-                               class="form-control cc-name @if($errors->has("thumbnail"))is-invalid @endif" placeholder="thumbnail" />
-                               @if($errors->has("thumbnail"))
-                                <p style="color:red">{{$errors->first("thumbnail")}}</p>
-                            @endif
+                            <label for="cc-name" class="control-label mb-1"><h4>Product Thumbnail</h4></label>
+                            <input name="thumbnaile" type="file" class="form-control cc-name">
                         </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <input type="text" name="gallery" type="text" value="{{$products->gallery}}"
-                               class="form-control cc-name @if($errors->has("gallery"))is-invalid @endif" placeholder="gallery" />
-                               @if($errors->has("gallery"))
-                                <p style="color:red">{{$errors->first("gallery")}}</p>
-                            @endif
+                            <label for="cc-name" class="control-label mb-1"><h4>Gallery</h4></label>
+                            <input name="gallerye" type="file" class="form-control cc-name">
                         </div>
                     </div>
                 </div>

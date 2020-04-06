@@ -8,12 +8,12 @@
                     class="banner_content d-md-flex justify-content-between align-items-center"
                 >
                     <div class="mb-3 mb-md-0">
-                        <h2>Product Details</h2>
-                        <p>Very us move be blessed multiply night</p>
+                        <h2>{{trans('viewproduct.product_details')}}</h2>
+                        <p>{{trans('viewproduct.product_details_introduce')}}</p>
                     </div>
                     <div class="page_link">
-                        <a href="#">Home</a>
-                        <a href="#">Product Details</a>
+                        <a href="#">{{trans('viewproduct.home')}}</a>
+                        <a href="#">{{trans('viewproduct.product_details')}}</a>
                     </div>
                 </div>
             </div>
@@ -30,6 +30,10 @@
                             class="carousel slide"
                             data-ride="carousel"
                         >
+                            @php
+                                $gallery = $product->gallery;
+                                $gallery = explode(",",$gallery);// string -> array
+                            @endphp
                             <ol class="carousel-indicators">
                                 <li
                                     data-target="#carouselExampleIndicators"
@@ -37,51 +41,39 @@
                                     class="active"
                                 >
                                     <img
-                                        src="{{$product->thumbnail}}" style="width: 60px;height: 60px"
+                                        src="{{asset($product->thumbnail)}}" style="width: 60px;height: 60px"
                                         alt=""
                                     />
                                 </li>
+                                @foreach($gallery as $g)
                                 <li
                                     data-target="#carouselExampleIndicators"
                                     data-slide-to="1"
                                 >
                                     <img
-                                        src="{{$product->thumbnail}}" style="width: 60px;height: 60px"
+                                        src="{{asset($g)}}" style="width: 60px;height: 60px"
                                         alt=""
                                     />
                                 </li>
-                                <li
-                                    data-target="#carouselExampleIndicators"
-                                    data-slide-to="2"
-                                >
-                                    <img
-                                        src="{{$product->thumbnail}}" style="width: 60px;height: 60px"
-                                        alt=""
-                                    />
-                                </li>
+                                @endforeach
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <img
                                         class="d-block w-100"
-                                        src="{{$product->thumbnail}}"
+                                        src="{{asset($product->thumbnail)}}"
                                         alt="First slide"
                                     />
                                 </div>
+                                @foreach($gallery as $g)
                                 <div class="carousel-item">
                                     <img
                                         class="d-block w-100"
-                                        src="{{$product->thumbnail}}"
+                                        src="{{asset($g)}}"
                                         alt="Second slide"
                                     />
                                 </div>
-                                <div class="carousel-item">
-                                    <img
-                                        class="d-block w-100"
-                                        src="{{$product->thumbnail}}"
-                                        alt="Third slide"
-                                    />
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -92,11 +84,11 @@
                         <h2>${{$product->getprice()}}</h2>
                         <ul class="list">
                             <li>
-                                <a href="#"><span>Category</span> : {{$product->Category->category_name}}</a>
+                                <a href="#"><span>{{trans('viewproduct.category')}}</span> : {{$product->Category->category_name}}</a>
                             </li>
                             <li>
-                                <p><a href="#"> <span>Brand</span> : {{$product->Brand->brand_name}}</a><br></p>
-                                <a href="#"> <span>Qty</span> : {{$product->quantity}}</a>
+                                <p><a href="#"> <span>{{trans('viewproduct.brand')}}</span> : {{$product->Brand->brand_name}}</a><br></p>
+                                <a href="#"> <span>{{trans('viewproduct.qty')}}</span> : {{$product->quantity}}</a>
                             </li>
                         </ul>
                         <p>
@@ -106,7 +98,7 @@
                             @csrf
 
                             <div class="product_count">
-                                <label for="qty">Quantity:</label>
+                                <label for="qty">{{trans('viewproduct.quantity')}}:</label>
                                 <input
                                     type="text"
                                     name="qty"
@@ -132,7 +124,13 @@
                                 </button>
                             </div>
                             <div class="card_area">
-                                <button class="main_btn" type="submit">Add to Cart</button>
+                                @if(!Auth::check())
+                                    <a href="#" class="site-btn btn-line" data-toggle="modal" data-target="#myModal">
+                                        <button class="main_btn" type="submit">{{trans('viewproduct.cart')}}</button>
+                                    </a>
+                                @else
+                                <button class="main_btn" type="submit">{{trans('viewproduct.cart')}}</button>
+                                @endif
                                 <a class="icon_btn" href="#">
                                     <i class="lnr lnr lnr-diamond"></i>
                                 </a>
@@ -141,7 +139,6 @@
                                 </a>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -160,31 +157,7 @@
                         role="tab"
                         aria-controls="home"
                         aria-selected="true"
-                    >Description</a
-                    >
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        id="profile-tab"
-                        data-toggle="tab"
-                        href="#profile"
-                        role="tab"
-                        aria-controls="profile"
-                        aria-selected="false"
-                    >Specification</a
-                    >
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        id="contact-tab"
-                        data-toggle="tab"
-                        href="#contact"
-                        role="tab"
-                        aria-controls="contact"
-                        aria-selected="false"
-                    >Comments</a
+                    >{{trans('viewproduct.description')}}</a
                     >
                 </li>
                 <li class="nav-item">
@@ -196,7 +169,7 @@
                         role="tab"
                         aria-controls="review"
                         aria-selected="false"
-                    >Reviews</a
+                    >{{trans('viewproduct.reviews')}}</a
                     >
                 </li>
             </ul>
@@ -208,254 +181,13 @@
                     aria-labelledby="home-tab"
                 >
                     <p>
-                        Beryl Cook is one of Britain’s most talented and amusing artists
-                        .Beryl’s pictures feature women of all shapes and sizes enjoying
-                        themselves .Born between the two world wars, Beryl Cook eventually
-                        left Kendrick School in Reading at the age of 15, where she went
-                        to secretarial school and then into an insurance office. After
-                        moving to London and then Hampton, she eventually married her next
-                        door neighbour from Reading, John Cook. He was an officer in the
-                        Merchant Navy and after he left the sea in 1956, they bought a pub
-                        for a year before John took a job in Southern Rhodesia with a
-                        motor company. Beryl bought their young son a box of watercolours,
-                        and when showing him how to use it, she decided that she herself
-                        quite enjoyed painting. John subsequently bought her a child’s
-                        painting set for her birthday and it was with this that she
-                        produced her first significant work, a half-length portrait of a
-                        dark-skinned lady with a vacant expression and large drooping
-                        breasts. It was aptly named ‘Hangover’ by Beryl’s husband and
+                    {{trans('viewproduct.description1')}}
                     </p>
                     <p>
-                        It is often frustrating to attempt to plan meals that are designed
-                        for one. Despite this fact, we are seeing more and more recipe
-                        books and Internet websites that are dedicated to the act of
-                        cooking for one. Divorce and the death of spouses or grown
-                        children leaving for college are all reasons that someone
-                        accustomed to cooking for more than one would suddenly need to
-                        learn how to adjust all the cooking practices utilized before into
-                        a streamlined plan of cooking that is more efficient for one
-                        person creating less
+                    {{trans('viewproduct.description2')}}
                     </p>
                 </div>
-                <div
-                    class="tab-pane fade"
-                    id="profile"
-                    role="tabpanel"
-                    aria-labelledby="profile-tab"
-                >
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <h5>Width</h5>
-                                </td>
-                                <td>
-                                    <h5>128mm</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Height</h5>
-                                </td>
-                                <td>
-                                    <h5>508mm</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Depth</h5>
-                                </td>
-                                <td>
-                                    <h5>85mm</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Weight</h5>
-                                </td>
-                                <td>
-                                    <h5>52gm</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Quality checking</h5>
-                                </td>
-                                <td>
-                                    <h5>yes</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Freshness Duration</h5>
-                                </td>
-                                <td>
-                                    <h5>03days</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>When packeting</h5>
-                                </td>
-                                <td>
-                                    <h5>Without touch of hand</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Each Box contains</h5>
-                                </td>
-                                <td>
-                                    <h5>60pcs</h5>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div
-                    class="tab-pane fade"
-                    id="contact"
-                    role="tabpanel"
-                    aria-labelledby="contact-tab"
-                >
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="comment_list">
-                                <div class="review_item">
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img
-                                                src="img/product/single-product/review-1.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Blake Ruiz</h4>
-                                            <h5>12th Feb, 2017 at 05:56 pm</h5>
-                                            <a class="reply_btn" href="#">Reply</a>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo
-                                    </p>
-                                </div>
-                                <div class="review_item reply">
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img
-                                                src="img/product/single-product/review-2.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Blake Ruiz</h4>
-                                            <h5>12th Feb, 2017 at 05:56 pm</h5>
-                                            <a class="reply_btn" href="#">Reply</a>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo
-                                    </p>
-                                </div>
-                                <div class="review_item">
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img
-                                                src="img/product/single-product/review-3.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Blake Ruiz</h4>
-                                            <h5>12th Feb, 2017 at 05:56 pm</h5>
-                                            <a class="reply_btn" href="#">Reply</a>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="review_box">
-                                <h4>Post a comment</h4>
-                                <form
-                                    class="row contact_form"
-                                    action="contact_process.php"
-                                    method="post"
-                                    id="contactForm"
-                                    novalidate="novalidate"
-                                >
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                id="name"
-                                                name="name"
-                                                placeholder="Your Full name"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input
-                                                type="email"
-                                                class="form-control"
-                                                id="email"
-                                                name="email"
-                                                placeholder="Email Address"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                id="number"
-                                                name="number"
-                                                placeholder="Phone Number"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                        <textarea
-                            class="form-control"
-                            name="message"
-                            id="message"
-                            rows="1"
-                            placeholder="Message"
-                        ></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 text-right">
-                                        <button
-                                            type="submit"
-                                            value="submit"
-                                            class="btn submit_btn"
-                                        >
-                                            Submit Now
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    
                 <div
                     class="tab-pane fade show active"
                     id="review"
@@ -463,219 +195,121 @@
                     aria-labelledby="review-tab"
                 >
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="row total_rate">
                                 <div class="col-6">
                                     <div class="box_total">
-                                        <h5>Overall</h5>
+                                        <h5>{{trans('viewproduct.overall')}}</h5>
                                         <h4 >{{number_format($rate->avg('rate'),2)}}</h4>
                                         @if(!count($rate)==0)
-                                            <h6>({{count($rate)}} Reviews)</h6>
+                                            <h6>({{count($rate)}} {{trans('viewproduct.no_reviews1')}})</h6>
                                         @else
-                                            <h6>(No Reviews)</h6>
+                                            <h6>({{trans('viewproduct.no_reviews2')}})</h6>
                                         @endif
 
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="rating_list">
-                                        <h3>Based on {{count($rate)}} Reviews</h3>
+                                        <h3>{{trans('viewproduct.based_on')}} {{count($rate)}} {{trans('viewproduct.no_reviews1')}}</h3>
                                         <ul class="list">
                                             <li>
                                                 <a href="#"
-                                                >5 Star
+                                                >5 {{trans('viewproduct.star')}}
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",5))}}</a
+                                                    <i class="fa fa-star"></i> - {{count($rate->where("rate",5))}}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a href="#"
-                                                >4 Star
+                                                >4 {{trans('viewproduct.star')}}
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",4))}}</a
+                                                    <i class="fa fa-star"></i> - {{count($rate->where("rate",4))}}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a href="#"
-                                                >3 Star
+                                                >3 {{trans('viewproduct.star')}}
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",3))}}</a
+                                                    <i class="fa fa-star"></i> - {{count($rate->where("rate",3))}}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a href="#"
-                                                >2 Star
+                                                >2 {{trans('viewproduct.star')}}
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",2))}}</a
+                                                    <i class="fa fa-star"></i> - {{count($rate->where("rate",2))}}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a href="#"
-                                                >1 Star
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",1))}}</a
+                                                >1 {{trans('viewproduct.star')}}
+                                                    <i class="fa fa-star"></i> - {{count($rate->where("rate",1))}}</a
                                                 >
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="review_list">
-                                @forelse ($ratenew as $r)
-                                <div class="review_item">
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img
-                                                src="img/product/single-product/review-1.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>{{$r->name}}</h4>
-                                            @if($r->rate==5)
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            @elseif($r->rate==4)
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            @elseif($r->rate==3)
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            @elseif($r->rate==2)
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                @else
-                                                <i class="fa fa-star"></i>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <p>
-                                        {{$r->message}}
-                                    </p>
-                                </div>
-                                    @empty
-                                    <p>Chung no chua danh gia</p>
-                                    @endforelse
 
-                                    <div class="product_pagination">
-                                        {!! $ratenew->links() !!}
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="review_box">
-                                <h4>Add a Review</h4>
-                                <p>Your Rating:</p>
-                                <ul class="list">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <p>Outstanding</p>
-                                <form
-                                    class="row contact_form"
-                                    action="contact_process.php"
-                                    method="post"
-                                    id="contactForm"
-                                    novalidate="novalidate"
-                                >
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                id="name"
-                                                name="name"
-                                                placeholder="Your Full name"
-                                            />
+
+                            <div class="card">
+                            @forelse ($ratenew as $r)
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                                            <p class="text-secondary text-center">{{$r->created_at}}</p>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="media-body" style="color:#FFD700">
+                                                <h5 style="color:black;">{{$r->name}}</h5>
+                                                @if($r->rate==5)
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                @elseif($r->rate==4)
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                @elseif($r->rate==3)
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                @elseif($r->rate==2)
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    @else
+                                                    <i class="fa fa-star"></i>
+                                                @endif
+                                            </div>
+                                        <div class="clearfix"></div>
+                                            <p>
+                                                {{$r->message}}
+                                            </p>
+                                                <p>
+                                                    <a class="float-right btn btn-info text-white ml-2"> <i class="fa fa-reply"></i>{{trans('viewproduct.reply')}}</a>
+                                                    <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i>{{trans('viewproduct.like')}}</a>
+                                            </p>
+                                        </div>
+                                        @empty
+                                        <p>{{trans('viewproduct.feedback')}}</p>
+                                        @endforelse
+
+                                        <div class="product_pagination">
+                                            {!! $ratenew->links() !!}
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input
-                                                type="email"
-                                                class="form-control"
-                                                id="email"
-                                                name="email"
-                                                placeholder="Email Address"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                id="number"
-                                                name="number"
-                                                placeholder="Phone Number"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                        <textarea
-                            class="form-control"
-                            name="message"
-                            id="message"
-                            rows="1"
-                            placeholder="Review"
-                        ></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 text-right">
-                                        <button
-                                            type="submit"
-                                            value="submit"
-                                            class="btn submit_btn"
-                                        >
-                                            Submit Now
-                                        </button>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Feedback_product;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -11,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+
+use App\Feedback_product;
 use App\Mail\OrederCreate;
 use App\Product;
 use App\Category;
@@ -35,7 +37,7 @@ class Controller extends BaseController
 
     public function home(){
         $categories=Category::all();
-        $purchased = Product::orderBy('purchase','asc')->take(8)->get();
+        $purchased = Product::orderBy('purchase','desc')->take(8)->get();
         return view("home",['categories'=>$categories,'purchased'=>$purchased]);
         }
     public function rate(){
@@ -202,6 +204,7 @@ class Controller extends BaseController
             $product = Product::find($p->id);
             $product->update([
                 "quantity" => $product->quantity-$p->cart_qty,
+                "purchase" => $product->purchase+$p->cart_qty,
 
 
             ]);
@@ -283,4 +286,28 @@ class Controller extends BaseController
         }
         return redirect()->to("/checkout-success");
     }
+
+
+
+//ajax
+public function postLogin(Request $request){
+    //        $request->validate([
+    //            "email" => 'required|email',
+    //            "password"=> "required|min:8"
+    //        ]);
+            $validator = Validator::make($request->all(),[
+                "email" => 'required|email',
+                "password"=> "required|min:8"
+            ]);
+    
+            if($validator->fails()){
+                return response()->json(["status"=>false,"message"=>$validator->errors()->first()]);
+            }
+            $email = $request->get("email");
+            $pass = $request->get("password");
+            if(Auth::attempt(['email'=>$email,'password'=>$pass])){
+                return response()->json(['status'=>true,'message'=>"Login successfully!"]);
+            }
+            return response()->json(['status'=>false,'message'=>"login failure"]);
+        }
 }

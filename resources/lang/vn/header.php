@@ -8,6 +8,13 @@ return[
     "home"=>"Trang chủ",
     "category"=>"Danh mục",
     "brand"=>"Thương hiệu",
+    "search"=>"Tìm Kiếm",
+
+    "user"=>"Đăng Nhập",
+    "order"=>"Lịch Sử Đơn Hàng",
+    "admin"=>"Admin",
+    "logout"=>"Đăng Xuất",
+
 
 
 ];

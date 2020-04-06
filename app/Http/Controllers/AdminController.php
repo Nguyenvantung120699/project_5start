@@ -85,18 +85,16 @@ class AdminController extends Controller
             "category_name"=> "required|string|unique:category"
         ]);
         try{
-            $image=null;
-            $ext_allow =["png","jpg","jpeg","gif","svg"];
+            $image = null;
+            $ext_allow = ["png","jpg","jpeg","gif","svg"];
             if($request->hasFile("image")){
-                $file =$request->file("image");
-                $filename=time()."-". $file->getClientOriginalName();//lay ten file
-                $ext=$file->getClientOriginalExtension();//lay duoi file
-                if (in_array($ext,$ext_allow)){
-                    $file->move("upload/category/",$filename);
-                    $image="upload/category/".$filename;
-                }
-
-
+                $file = $request->file("image");
+                $file_name = time()."_".$file->getClientOriginalName();
+                $ext = $file->getClientOriginalExtension();
+                if(in_array($ext,$ext_allow)){
+                    $file->move("upload",$file_name);
+                    $image = "upload/".$file_name;
+                }       
             }
             Category::create([
                 "category_name"=> $request->get("category_name"),
@@ -119,18 +117,16 @@ class AdminController extends Controller
             "category_name"=> "required|string|unique:category,category_name,".$id
         ]);
         try {
-            $image=null;
-            $ext_allow =["png","jpg","jpeg","gif","svg"];
+            $image = null;
+            $ext_allow = ["png","jpg","jpeg","gif","svg"];
             if($request->hasFile("image")){
-                $file =$request->file("image");
-                $filename=time()."-". $file->getClientOriginalName();//lay ten file
-                $ext=$file->getClientOriginalExtension();//lay duoi file
-                if (in_array($ext,$ext_allow)){
-                    $file->move("upload/category/",$filename);
-                    $image="upload/category/".$filename;
-                }
-
-
+                $file = $request->file("image");
+                $file_name = time()."_".$file->getClientOriginalName();
+                $ext = $file->getClientOriginalExtension();
+                if(in_array($ext,$ext_allow)){
+                    $file->move("upload",$file_name);
+                    $image = "upload/".$file_name;
+                }       
             }
             $categories->update([
                 "category_name"=> $request->get('category_name'),
@@ -169,17 +165,40 @@ class AdminController extends Controller
         $request->validate([
             "product_name" => "required|string|unique:product",
             "product_desc" => "required|string",
-            "thumbnail" => "required|string",
             "category_id" => "required|integer",
             "brand_id" => "required|integer",
             "price" => "required|numeric",
             "quantity" => "required|integer"
         ]);
         try {
+            $thumbnail = null;
+            $ext_allow = ["png","jpg","jpeg","gif","svg"];
+            if($request->hasFile("thumbnail")){
+                $file = $request->file("thumbnail");
+                $file_name = time()."_".$file->getClientOriginalName();
+                $ext = $file->getClientOriginalExtension();
+                if(in_array($ext,$ext_allow)){
+                    $file->move("upload",$file_name);
+                    $thumbnail = "upload/".$file_name;
+                }      
+            }
+
+            $gallery = null;
+            $ext_allowg = ["png","jpg","jpeg","gif","svg"];
+            if($request->hasFile("gallery")){
+                $fileg = $request->file("gallery");
+                $file_gname = time()."_".$fileg->getClientOriginalName();
+                $extg = $fileg->getClientOriginalExtension();
+                if(in_array($extg,$ext_allowg)){
+                    $fileg->move("upload",$file_gname);
+                    $gallery = "upload/".$file_gname;
+                }      
+            }
             Product::create([
                 "product_name" => $request->get("product_name"),
                 "product_desc" => $request->get("product_desc"),
-                "thumbnail" => $request->get("thumbnail"),
+                'thumbnail' => $thumbnail,
+                'gallery' => $gallery,
                 "category_id" => $request->get("category_id"),
                 "brand_id" => $request->get("brand_id"),
                 "price" => $request->get("price"),
@@ -203,17 +222,40 @@ class AdminController extends Controller
             "product_name" =>
             "required|string|unique:product,product_name," . $id,
             "product_desc" => "required|string",
-            "thumbnail" => "required|string",
             "category_id" => "required|integer",
             "brand_id" => "required|integer",
             "price" => "required|numeric",
             "quantity" => "required|integer"
         ]);
         try {
+            $thumbnaile = null;
+            $ext_allowe = ["png","jpg","jpeg","gif","svg"];
+            if($request->hasFile("thumbnaile")){
+                $filee = $request->file("thumbnaile");
+                $file_namee = time()."_".$filee->getClientOriginalName();
+                $exte = $filee->getClientOriginalExtension();
+                if(in_array($exte,$ext_allowe)){
+                    $filee->move("upload",$file_namee);
+                    $thumbnaile = "upload/".$file_namee;
+                }      
+            }
+
+            $gallerye = null;
+            $ext_allowge = ["png","jpg","jpeg","gif","svg"];
+            if($request->hasFile("gallerye")){
+                $filege = $request->file("gallerye");
+                $file_gename = time()."_".$filege->getClientOriginalName();
+                $extg = $filege->getClientOriginalExtension();
+                if(in_array($extg,$ext_allowge)){
+                    $filege->move("upload",$file_gename);
+                    $gallerye = "upload/".$file_gename;
+                }      
+            }
             $product->update([
                 "product_name" => $request->get("product_name"),
                 "product_desc" => $request->get("product_desc"),
-                "thumbnail" => $request->get("thumbnail"),
+                'thumbnail' => $thumbnaile,
+                'gallery' => $gallerye,
                 "category_id" => $request->get("category_id"),
                 "brand_id" => $request->get("brand_id"),
                 "price" => $request->get("price"),

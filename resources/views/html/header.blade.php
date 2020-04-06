@@ -6,8 +6,6 @@
                     <div class="float-left">
                         <p>{{trans('header.phone')}}</p>
                         <p>{{trans('header.email')}}</p>
-                        <a href="{{asset('/setLocal-vn')}}">Tiếng Việt</a>
-                        <a href="{{asset('/setLocal-en')}}">English</a>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -67,19 +65,6 @@
                                         @endforeach
                                     </ul>
                                 </li>
-
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">{{trans('header.brand')}}</a>
-                                    <ul class="dropdown-menu">
-                                        @foreach(\App\Brand::all() as $c)
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{url("/thuong-hieu/{$c->id}")}}">{{$c->brand_name}}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">Blog</a>
@@ -117,24 +102,13 @@
                                 <li class="nav-item">
                                     <form class="form-inline "  style="width: 250px;padding-top:22px" method="get" action="{{asset('search')}}">
                                         <div class="input-group mb-3">
-                                            <input type="text" name="key" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                                            <input type="text" name="key" class="form-control" placeholder="{{trans('header.search')}}" aria-label="Search" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
                                                 <button class="btn btn-success" type="submit"><i class="ti-search"></i></button>
                                             </div>
                                         </div>
                                     </form>
                                 </li>
-
-
-
-
-
-                                <li class="nav-item">
-                                    <a href="{{url("/cart")}}" class="icons">
-                                        <i class="ti-shopping-cart"></i>
-                                    </a>
-                                </li>
-
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="icons nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">
@@ -142,22 +116,62 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">My Account</a>
+                                            @if(!Auth::check())
+                                                <a href="#" class="login nav-link" data-toggle="modal" data-target="#myModal">
+                                                {{trans('header.user')}}
+                                                </a>
+                                            @else
+                                                <a href="#" class="login nav-link" >
+                                                <img style="border-radius:70px;" src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>{{Auth::user()->name}}
+                                                </a>
+                                            @endif
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{url("/admin/home")}}">Admin</a>
+                                         @if(!Auth::check())
+                                            <a href="#" class="login nav-link" data-toggle="modal" data-target="#myModal">
+                                                {{trans('header.order')}}
+                                            </a>
+                                            @else
+                                            <a class="nav-link" href="{{url("/listOrder")}}">{{trans('header.order')}}</a>
+                                            @endif
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{url("/logout")}}">Logout</a>
+                                            @if(!Auth::check())
+                                                <a href="#" class="login nav-link" data-toggle="modal" data-target="#myModal">
+                                                    {{trans('header.admin')}}
+                                                </a>
+                                            @else
+                                            <a class="nav-link" href="{{url("/admin/home")}}">{{trans('header.admin')}}</a>
+                                            @endif
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{url("/logout")}}">{{trans('header.logout')}}</a>
                                         </li>
 
                                     </ul>
                                 </li>
-
                                 <li class="nav-item">
-                                    <a href="#" class="icons">
-                                        <i class="ti-heart" aria-hidden="true"></i>
+                                    @if(!Auth::check())
+                                        <a href="#" class="icons" data-toggle="modal" data-target="#myModal">
+                                            <i class="ti-shopping-cart"></i>
+                                        </a>
+                                    @else
+                                    <a href="{{url("/cart")}}" class="icons">
+                                        <i class="ti-shopping-cart"></i>
                                     </a>
+                                    @endif
+                                </li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="icons nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false"><i class="ti-world"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{asset('/setLocal-vn')}}">Vietnamese</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{asset('/setLocal-en')}}">English</a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </div>
