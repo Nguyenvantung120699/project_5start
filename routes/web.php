@@ -67,3 +67,6 @@ Route::get('/logout',function (){
    \Illuminate\Support\Facades\Auth::logout();
    return redirect()->to("/login");
 });
+
+
+Route::post("postLogin","Controller@postLogin");

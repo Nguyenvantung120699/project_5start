@@ -10,7 +10,7 @@ return[
     "brand"=>"Thương hiệu",
     "search"=>"Tìm Kiếm",
 
-    "user"=>"Tài Khoản Của Tôi",
+    "user"=>"Đăng Nhập",
     "order"=>"Lịch Sử Đơn Hàng",
     "admin"=>"Admin",
     "logout"=>"Đăng Xuất",

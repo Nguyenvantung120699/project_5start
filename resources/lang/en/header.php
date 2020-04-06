@@ -10,7 +10,7 @@ return[
     "brand"=>"brand",
     "search"=>"Search",
 
-    "user"=>"my account",
+    "user"=>"login",
     "order"=>"order history",
     "admin"=>"Admin",
     "logout"=>"logout",

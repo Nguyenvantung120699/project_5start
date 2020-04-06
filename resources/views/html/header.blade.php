@@ -127,11 +127,6 @@
 
 
 
-                                <li class="nav-item">
-                                    <a href="{{url("/cart")}}" class="icons">
-                                        <i class="ti-shopping-cart"></i>
-                                    </a>
-                                </li>
 
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="icons nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -140,13 +135,34 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">{{trans('header.user')}}</a>
+                                            @if(!Auth::check())
+                                                <a href="#" class="login nav-link" data-toggle="modal" data-target="#myModal">
+                                                {{trans('header.user')}}
+                                                </a>
+                                            @else
+                                                <a href="#" class="login nav-link" >
+                                                <img style="border-radius:70px;" src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>{{Auth::user()->name}}
+                                                </a>
+                                            @endif
                                         </li>
                                         <li class="nav-item">
+                                         @if(!Auth::check())
+                                            <a href="#" class="login nav-link" data-toggle="modal" data-target="#myModal">
+                                                {{trans('header.order')}}
+                                            </a>
+                                            @else
                                             <a class="nav-link" href="{{url("/listOrder")}}">{{trans('header.order')}}</a>
+                                            @endif
                                         </li>
+            
                                         <li class="nav-item">
+                                            @if(!Auth::check())
+                                                <a href="#" class="login nav-link" data-toggle="modal" data-target="#myModal">
+                                                    {{trans('header.admin')}}
+                                                </a>
+                                            @else
                                             <a class="nav-link" href="{{url("/admin/home")}}">{{trans('header.admin')}}</a>
+                                            @endif
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{url("/logout")}}">{{trans('header.logout')}}</a>
@@ -154,7 +170,17 @@
 
                                     </ul>
                                 </li>
-
+                                <li class="nav-item">
+                                    @if(!Auth::check())
+                                        <a href="#" class="icons" data-toggle="modal" data-target="#myModal">
+                                            <i class="ti-shopping-cart"></i>
+                                        </a>
+                                    @else
+                                    <a href="{{url("/cart")}}" class="icons">
+                                        <i class="ti-shopping-cart"></i>
+                                    </a>
+                                    @endif
+                                </li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="icons nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false"><i class="ti-world"></i></a>

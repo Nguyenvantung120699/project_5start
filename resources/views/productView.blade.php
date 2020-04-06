@@ -124,7 +124,13 @@
                                 </button>
                             </div>
                             <div class="card_area">
+                                @if(!Auth::check())
+                                    <a href="#" class="site-btn btn-line" data-toggle="modal" data-target="#myModal">
+                                        <button class="main_btn" type="submit">{{trans('viewproduct.cart')}}</button>
+                                    </a>
+                                @else
                                 <button class="main_btn" type="submit">{{trans('viewproduct.cart')}}</button>
+                                @endif
                                 <a class="icon_btn" href="#">
                                     <i class="lnr lnr lnr-diamond"></i>
                                 </a>
@@ -263,7 +269,7 @@
                                         </div>
                                         <div class="col-md-10">
                                             <div class="media-body" style="color:#FFD700">
-                                                <h4>{{$r->name}}</h4>
+                                                <h5 style="color:black;">{{$r->name}}</h5>
                                                 @if($r->rate==5)
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>

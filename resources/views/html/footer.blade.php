@@ -11,7 +11,7 @@
           </ul>
         </div>
         <div class="col-lg-2 col-md-6 single-footer-widget">
-          <h4>{{trans('footer.foote_info1')}}</h4>
+          <h4>{{trans('footer.foote_info2')}}</h4>
           <ul>
             <li><a href="#">{{trans('footer.foote_info2_2')}}</a></li>
             <li><a href="#">{{trans('footer.foote_info2_3')}}</a></li>
@@ -20,7 +20,7 @@
           </ul>
         </div>
         <div class="col-lg-2 col-md-6 single-footer-widget">
-          <h4>{{trans('footer.foote_info1')}}</h4>
+          <h4>{{trans('footer.foote_info3')}}</h4>
           <ul>
             <li><a href="#">{{trans('footer.foote_info3_2')}}</a></li>
             <li><a href="#">{{trans('footer.foote_info3_3')}}</a></li>
@@ -29,7 +29,7 @@
           </ul>
         </div>
         <div class="col-lg-2 col-md-6 single-footer-widget">
-          <h4>{{trans('footer.foote_info1')}}</h4>
+          <h4>{{trans('footer.foote_info4')}}</h4>
           <ul>
             <li><a href="#">{{trans('footer.foote_info4_2')}}</a></li>
             <li><a href="#">{{trans('footer.foote_info4_3')}}</a></li>

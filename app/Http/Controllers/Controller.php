@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 use App\Feedback_product;
 use App\Mail\OrederCreate;
@@ -285,4 +286,28 @@ class Controller extends BaseController
         }
         return redirect()->to("/checkout-success");
     }
+
+
+
+//ajax
+public function postLogin(Request $request){
+    //        $request->validate([
+    //            "email" => 'required|email',
+    //            "password"=> "required|min:8"
+    //        ]);
+            $validator = Validator::make($request->all(),[
+                "email" => 'required|email',
+                "password"=> "required|min:8"
+            ]);
+    
+            if($validator->fails()){
+                return response()->json(["status"=>false,"message"=>$validator->errors()->first()]);
+            }
+            $email = $request->get("email");
+            $pass = $request->get("password");
+            if(Auth::attempt(['email'=>$email,'password'=>$pass])){
+                return response()->json(['status'=>true,'message'=>"Login successfully!"]);
+            }
+            return response()->json(['status'=>false,'message'=>"login failure"]);
+        }
 }
