@@ -65,19 +65,6 @@
                                         @endforeach
                                     </ul>
                                 </li>
-
-                                <!-- <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">{{trans('header.brand')}}</a>
-                                    <ul class="dropdown-menu">
-                                        @foreach(\App\Brand::all() as $c)
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{url("/thuong-hieu/{$c->id}")}}">{{$c->brand_name}}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li> -->
-
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">Blog</a>
@@ -122,12 +109,6 @@
                                         </div>
                                     </form>
                                 </li>
-
-
-
-
-
-
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="icons nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">
@@ -154,7 +135,6 @@
                                             <a class="nav-link" href="{{url("/listOrder")}}">{{trans('header.order')}}</a>
                                             @endif
                                         </li>
-            
                                         <li class="nav-item">
                                             @if(!Auth::check())
                                                 <a href="#" class="login nav-link" data-toggle="modal" data-target="#myModal">
