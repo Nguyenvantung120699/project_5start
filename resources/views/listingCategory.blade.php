@@ -7,11 +7,11 @@
                 <div class="banner_content d-md-flex justify-content-between align-items-center">
                     <div class="mb-3 mb-md-0">
                         <h2>{{$category->category_name}}</h2>
-                        <p>Very us move be blessed multiply night</p>
+                        <p>{{trans('category.category_introduce')}}</p>
                     </div>
                     <div class="page_link">
-                        <a href="{{url("/")}}">Home</a>
-                        <a href="#">Shop Category</a>
+                        <a href="{{url("/")}}">{{trans('category.home')}}</a>
+                        <a href="#">{{trans('category.shop_category')}}</a>
                         <a href="#">{{$category->category_name}}</a>
                     </div>
                 </div>
@@ -25,14 +25,14 @@
                     <div class="product_top_bar">
                         <div class="left_dorp">
                             <select class="sorting">
-                                <option value="1">Default sorting</option>
-                                <option value="2">Default sorting 01</option>
-                                <option value="4">Default sorting 02</option>
+                                <option value="1">{{trans('category.default_sorting')}}</option>
+                                <option value="2">{{trans('category.default_sorting1')}}</option>
+                                <option value="4">{{trans('category.default_sorting2')}}</option>
                             </select>
                             <select class="show">
-                                <option value="1">Show 12</option>
-                                <option value="2">Show 14</option>
-                                <option value="4">Show 16</option>
+                                <option value="1">{{trans('category.show')}}</option>
+                                <option value="2">{{trans('category.show2')}}</option>
+                                <option value="4">{{trans('category.show3')}}</option>
                             </select>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                     <div class="left_sidebar_area">
                         <aside class="left_widgets p_filter_widgets">
                             <div class="l_w_title">
-                                <h3>Categories</h3>
+                                <h3>{{trans('category.name')}}</h3>
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
@@ -93,7 +93,7 @@
 
                         <aside class="left_widgets p_filter_widgets">
                             <div class="l_w_title">
-                                <h3>Brand</h3>
+                                <h3>{{trans('category.brand_name')}}</h3>
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
@@ -101,46 +101,6 @@
                                         <li> <a href="{{url("thuong-hieu/{$b->id}")}}">{{$b->brand_name}}</a></li>
                                     @endforeach
                                 </ul>
-                            </div>
-                        </aside>
-
-                        <aside class="left_widgets p_filter_widgets">
-                            <div class="l_w_title">
-                                <h3>Color Filter</h3>
-                            </div>
-                            <div class="widgets_inner">
-                                <ul class="list">
-                                    <li>
-                                        <a href="#">Black</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Black Leather</a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="#">Black with red</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Gold</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Spacegrey</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </aside>
-
-                        <aside class="left_widgets p_filter_widgets">
-                            <div class="l_w_title">
-                                <h3>Price Filter</h3>
-                            </div>
-                            <div class="widgets_inner">
-                                <div class="range_item">
-                                    <div id="slider-range"></div>
-                                    <div class="">
-                                        <label for="amount">Price : </label>
-                                        <input type="text" id="amount" readonly />
-                                    </div>
-                                </div>
                             </div>
                         </aside>
                     </div>

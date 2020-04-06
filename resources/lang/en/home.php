@@ -1,0 +1,26 @@
+<?php
+return[
+"banner_content"=>"COLLECTION OF HANDICRAFTS",
+"banner_content_1"=>"Originating",
+"banner_content_2"=>"aesthetic",
+"banner_content_3"=>"quintessence",
+"banner_content_4"=>"of mankind",
+"banner_content_5"=>"We collect the most quintessential human artistic values",
+"button_banner_content"=>"view collection",
+"list_service_money"=>"Money back gurantee",
+"service_money"=>"Find out more about the service",
+"list_service_delivery"=>"Free Delivery",
+"service_delivery"=>"Find out more about the service",
+"list_service_support"=>"Alway support",
+"service_support"=>"Find out more about the service",
+"list_service_payment"=>"Secure payment",
+"service_payment"=>"Find out more about the service",
+"category_list" => "CATEGORY LISTING",
+"category_list_introduce" => "Click on the catalog you want to see to know more about our products",
+"text_offer"=>"ALL BRAND PRODUCTS 'GOM BAT TRANG'",
+"offer_sale_off"=>"50% OFF",
+"button_offer"=>"Discover Now",
+"time_offer"=>"Limited Time Offer",
+"product_selling" => "TOP SELLING PRODUCTS",
+"product_selling_introduce" => "The products below are many people choose and love"
+];

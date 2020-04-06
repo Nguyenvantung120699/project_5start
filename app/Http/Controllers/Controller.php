@@ -20,12 +20,19 @@ use App\OrderProduct;
 use App\User;
 use App\Brand;
 use App\Mail\CancelOrder;
+use Illuminate\Support\Facades\Session;
 
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function changeLanguage($language)
+    {
+        Session::put('website_language', $language);
+
+    return redirect()->back();
+}
 
     public function home(){
         $categories=Category::all();
@@ -84,6 +91,27 @@ class Controller extends BaseController
         session(["cart"=>$cart]);
         return redirect()->to("/cart");
     }
+    public function pshopping($id, Request $request){
+        $product=Product::find($id);
+        $cart =$request->session()->get("cart");
+        $request->validate([
+            'qty'=> 'required | string',
+        ]);
+        if($cart==null){
+            $cart=[];
+        }
+        foreach ($cart as $p){
+            if($p->id == $product->id){
+                $p->cart_qty =$p->cart_qty+$request->get("qty");
+                session(["cart"=>$cart]);
+                return redirect()->to("/cart");
+            }
+        }
+        $product->cart_qty=$request->get("qty");
+        $cart[]=$product;
+        session(["cart"=>$cart]);
+        return redirect()->to("/cart");
+    }
     public function cart(Request $request){
     $cart = $request->session()->get("cart");
     if($cart == null){
@@ -96,6 +124,44 @@ class Controller extends BaseController
     return view("cart",["cart"=>$cart,'cart_total'=>$cart_total]);
 
 }
+    public function reduceOne($id,Request $request){
+        if(!$cart=session()->has("cart")){
+            return redirect()->to("/");
+        }
+        $cart =$request-> session()->get('cart');
+        foreach ($cart as $p){
+            if($p->id ==$id){
+                $p->cart_qty-=1;
+                return redirect()->to("/cart");
+            }
+        }
+        return redirect()->to("/cart");
+    }
+    public function increaseOne($id,Request $request){
+        if(!$cart=session()->has("cart")){
+            return redirect()->to("/");
+        }
+        $cart =$request-> session()->get('cart');
+        foreach ($cart as $p){
+            if($p->id ==$id){
+                $p->cart_qty+=1;
+                return redirect()->to("/cart");
+            }
+        }
+        return redirect()->to("/cart");
+    }
+//    public function deleteItemCart($id,Request $request){
+//        if(!$cart=session()->has("cart")){
+//            return redirect()->to("/");
+//        }
+//        $cart =$request-> session()->get('cart');
+//        $request-> session()->forget("cart");
+//        foreach ($cart as $p){
+//            if($p->id !=$id){
+//            }
+//        }
+//        return redirect()->to("/cart");
+//    }
     public function clearCart(Request $request){
         $request->session()->forget("cart");
         return redirect()->to("/");

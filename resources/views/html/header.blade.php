@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col-lg-7">
                     <div class="float-left">
-                        <p>Phone: +84 256 25 235</p>
-                        <p>email: info@eiser.com</p>
+                        <p>{{trans('header.phone')}}</p>
+                        <p>{{trans('header.email')}}</p>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -13,17 +13,17 @@
                         <ul class="right_side">
                             <li>
                                 <a href="{{url("cart")}}">
-                                    gift card
+                                    {{trans('header.gift')}}
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    track order
+                                    {{trans('header.trackorder')}}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{url("contact")}}">
-                                    Contact Us
+                                    {{trans('header.contact')}}
                                 </a>
                             </li>
                         </ul>
@@ -52,11 +52,11 @@
                         <div class="col-lg-7 pr-0">
                             <ul class="nav navbar-nav center_nav pull-right">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{url("/")}}">Home</a>
+                                    <a class="nav-link" href="{{url("/")}}"> {{trans('header.home')}}</a>
                                 </li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Shop</a>
+                                       aria-expanded="false">{{trans('header.category')}}</a>
                                     <ul class="dropdown-menu">
                                         @foreach(\App\Category::all() as $c)
                                             <li class="nav-item">
@@ -68,7 +68,7 @@
 
                                 <!-- <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Brand</a>
+                                       aria-expanded="false">{{trans('header.brand')}}</a>
                                     <ul class="dropdown-menu">
                                         @foreach(\App\Brand::all() as $c)
                                             <li class="nav-item">
@@ -105,7 +105,7 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{url("contact")}}">Contact</a>
+                                    <a class="nav-link" href="{{url("contact")}}">{{trans('header.contact')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -115,7 +115,7 @@
                                 <li class="nav-item">
                                     <form class="form-inline "  style="width: 250px;padding-top:22px" method="get" action="{{asset('search')}}">
                                         <div class="input-group mb-3">
-                                            <input type="text" name="key" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                                            <input type="text" name="key" class="form-control" placeholder="{{trans('header.search')}}" aria-label="Search" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
                                                 <button class="btn btn-success" type="submit"><i class="ti-search"></i></button>
                                             </div>
@@ -140,25 +140,32 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">My Account</a>
+                                            <a class="nav-link" href="#">{{trans('header.user')}}</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{url("/listOrder")}}">Lịch Sử Đơn Hàng</a>
+                                            <a class="nav-link" href="{{url("/listOrder")}}">{{trans('header.order')}}</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{url("/admin/home")}}">Admin</a>
+                                            <a class="nav-link" href="{{url("/admin/home")}}">{{trans('header.admin')}}</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{url("/logout")}}">Logout</a>
+                                            <a class="nav-link" href="{{url("/logout")}}">{{trans('header.logout')}}</a>
                                         </li>
 
                                     </ul>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a href="#" class="icons">
-                                        <i class="ti-heart" aria-hidden="true"></i>
-                                    </a>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="icons nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false"><i class="ti-world"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{asset('/setLocal-vn')}}">Vietnamese</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{asset('/setLocal-en')}}">English</a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </div>

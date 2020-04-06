@@ -8,12 +8,12 @@
                     class="banner_content d-md-flex justify-content-between align-items-center"
                 >
                     <div class="mb-3 mb-md-0">
-                        <h2>Cart</h2>
-                        <p>Very us move be blessed multiply night</p>
+                        <h2>{{trans('cart.cart')}}</h2>
+                        <p>{{trans('cart.cart_introduce')}}</p>
                     </div>
                     <div class="page_link">
-                        <a href="{{url("/")}}">Home</a>
-                        <a href="#">Cart</a>
+                        <a href="{{url("/")}}">{{trans('cart.home')}}</a>
+                        <a href="#">{{trans('cart.cart')}}</a>
                     </div>
                 </div>
             </div>
@@ -26,10 +26,11 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">Product</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">{{trans('cart.product')}}</th>
+                            <th scope="col">{{trans('cart.price')}}</th>
+                            <th scope="col">{{trans('cart.quantity')}}</th>
+                            <th scope="col">{{trans('cart.total')}}</th>
+                            <th scope="col">XXXX</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -63,32 +64,41 @@
                                         class="input-text qty"
                                     />
                                     <button
-                                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                                         class="increase items-count"
                                         type="button"
                                     >
-                                        <i class="lnr lnr-chevron-up"></i>
+                                        <a href="{{url("/increaseOne/{$p->id}")}}"> <i class="lnr lnr-chevron-up"></i></a>
                                     </button>
-                                    <button
-                                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                        class="reduced items-count"
-                                        type="button"
+
+                                    @if( $p->cart_qty>1)
+                                    <button class="reduced items-count" type="button" id="reduceOne"
                                     >
-                                        <i class="lnr lnr-chevron-down"></i>
+                                        <a  href="{{url("/reduceOne/{$p->id}")}}"> <i class="lnr lnr-chevron-down"></i></a>
                                     </button>
+                                        @else
+                                        <button class="reduced items-count" type="button" disabled="disabled"
+                                        >
+                                            <a > <i class="lnr lnr-chevron-down"></i></a>
+                                        </button>
+                                    @endif
                                 </div>
                             </td>
                             <td>
                                 <h5>${{($p->cart_qty*$p->price)}}</h5>
                             </td>
+                            <td>
+                                <h5>
+                                <a href="{{url("/deleteItemCart/{$p->id}")}}"><button class="btn btn-success"><i class="ti-trash"></i>{{trans('cart.delete')}}</button></a>
+                                </h5>
+                            </td>
                         </tr>
                         @empty
-                            <p>Khong co san pham trong gio hang</p>
+                            <p>{{trans('cart.empty')}}</p>
                         @endforelse
                         <tr class="bottom_button">
                             <td>
-                                <a class="gray_btn" href="{{url("/clear-cart")}}">Clear Cart</a>
-                                <a class="gray_btn" href="{{url("listOrder")}}">Orders purchased</a>
+                                <a class="gray_btn" href="{{url("/clear-cart")}}">{{trans('cart.clear_cart')}}</a>
+                                <a class="gray_btn" href="{{url("listOrder")}}">{{trans('cart.orders_purchased')}}</a>
                             </td>
                             <td>
 
@@ -101,7 +111,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <h5>Subtotal</h5>
+                                <h5>{{trans('cart.subtotal')}}</h5>
                             </td>
                             <td>
                                 <h5>${{$cart_total}}</h5>
@@ -113,8 +123,8 @@
                             <td></td>
                             <td>
                                 <div class="checkout_btn_inner">
-                                    <a class="gray_btn" href="#">Continue Shopping</a>
-                                    <a class="main_btn" href="{{url("check-out")}}">Proceed to checkout</a>
+                                    <a class="gray_btn" href="#">{{trans('cart.continue_shopping')}}</a>
+                                    <a class="main_btn" href="{{url("check-out")}}">{{trans('cart.proceed_to_checkout')}}</a>
                                 </div>
                             </td>
                         </tr>

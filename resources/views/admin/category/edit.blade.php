@@ -18,6 +18,10 @@
                                @if($errors->has("category_name"))
                                 <p style="color:red">{{$errors->first("category_name")}}</p>
                             @endif
+                            <div class="form-group has-success">
+                                <label for="cc-name" class="control-label mb-1">Avatar</label>
+                                <input name="image" type="file" value="{{old("image")}}" class="form-control cc-name" placeholder="image">
+                            </div>
                         </div>
                         <div class="main_input_box">
                             <label for="cc-name" class="control-label mb-1"><h4>Category avatar</h4></label>

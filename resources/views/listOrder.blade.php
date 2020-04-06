@@ -52,7 +52,7 @@
                                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <a class="dropdown-item" href="{{url("/viewOrder/{$p->id}")}}"><i class="ti-eye"></i> xem chi tiết</a>
                                             <a class="dropdown-item" href="{{url("/repurchase/{$p->id}")}}"><i class="ti-shopping-cart"></i> Mua Lại Đơn</a>
-                                            <a class="dropdown-item" href=""><i class="ti-eraser"></i> Hủy Đơn Hàng</a>
+                                            <a class="dropdown-item" href=""><i class="ti-trash"></i> Hủy Đơn Hàng</a>
                                             </div>
                                         </div>
                                     </div>

@@ -6,7 +6,7 @@
     <div class="quick-actions_homepage">
         <div><a href="{{url('admin/category/create')}}"><button class="btn btn-success">Create Category<i class="icon-plus"></i></button></a></div>
     </div>
-  </div>  
+  </div>
 @endsection
 
 @section("main_content")

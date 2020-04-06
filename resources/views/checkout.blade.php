@@ -8,12 +8,12 @@
                     class="banner_content d-md-flex justify-content-between align-items-center"
                 >
                     <div class="mb-3 mb-md-0">
-                        <h2>Product Checkout</h2>
-                        <p>Very us move be blessed multiply night</p>
+                        <h2>{{trans('procced_checkout.product_checkout')}}</h2>
+                        <p>{{trans('procced_checkout.product_checkout_introduce')}}</p>
                     </div>
                     <div class="page_link">
-                        <a href="{{url("/")}}">Home</a>
-                        <a href="{{url("/check-out")}}">Product Checkout</a>
+                        <a href="{{url("/")}}">{{trans('procced_checkout.home')}}</a>
+                        <a href="{{url("/check-out")}}">{{trans('procced_checkout.product_checkout')}}</a>
                     </div>
                 </div>
             </div>
@@ -25,54 +25,54 @@
             <div class="cupon_area">
                 <div class="check_title">
                     <h2>
-                        Have a coupon?
-                        <a href="#">Click here to enter your code</a>
+                    {{trans('procced_checkout.have_a_coupon')}}
+                        <a href="#">{{trans('procced_checkout.have_a_coupon2')}}</a>
                     </h2>
                 </div>
-                <input type="text" placeholder="Enter coupon code" />
-                <a class="tp_btn" href="#">Apply Coupon</a>
+                <input type="text" placeholder="{{trans('procced_checkout.enter_coupon_code')}}" />
+                <a class="tp_btn" href="#">{{trans('procced_checkout.apply_coupon')}}</a>
             </div>
             <div class="billing_details">
                 <div class="row">
                     <div class="col-lg-8">
-                        <h3>Billing Details</h3>
+                        <h3>{{trans('procced_checkout.billing_details')}}</h3>
                         <form action="{{url("check-out")}}" class="row contact_form"  method="post" novalidate="novalidate">
                             @csrf
                             <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="first" name="customer_name" placeholder="Name" required/>
+                                <input type="text" class="form-control" id="first" name="customer_name" placeholder="{{trans('procced_checkout.name')}}" required/>
                             </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="number" name="telephone" placeholder="Phone number" required/>
+                                <input type="text" class="form-control" id="number" name="telephone" placeholder="{{trans('procced_checkout.phone_number')}}" required/>
                             </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="email" name="address" placeholder="Address" required/>
+                                <input type="text" class="form-control" id="email" name="address" placeholder="{{trans('procced_checkout.address')}}" required/>
                             </div>
                             <div class="col-md-12 form-group p_star">
                                 <select class="country_select" name="payment_method">
-                                    <option value="paypal" >Paypal</option>
-                                    <option value="cod" >COD</option>
-                                    <option value="credit_card" >Credit card</option>
-                                    <option value="bank_transfer" >Bank transfer</option>
+                                    <option value="paypal" >{{trans('procced_checkout.paypal')}}</option>
+                                    <option value="cod" >{{trans('procced_checkout.COD')}}</option>
+                                    <option value="credit_card" >{{trans('procced_checkout.Credit_card')}}</option>
+                                    <option value="bank_transfer" >{{trans('procced_checkout.Bank_transfer')}}</option>
                                 </select>
                             </div>
                             <div class="col-md-12 form-group">
                                 <div class="creat_account">
-                                    <h3>Shipping Details</h3>
+                                    <h3>{{trans('procced_checkout.Shipping_Details')}}</h3>
                                 </div>
-                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Order Notes"></textarea>
+                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="{{trans('procced_checkout.Order_Notes')}}"></textarea>
                             </div>
-                            <button class="main_btn" type="submit">Place Order</button>
+                            <button class="main_btn" type="submit">{{trans('procced_checkout.Place_Order')}}</button>
                         </form>
 
                     </div>
                     <div class="col-lg-4">
                         <div class="order_box">
-                            <h2>Your Order</h2>
+                            <h2>{{trans('procced_checkout.Your_Order')}}</h2>
                             <ul class="list">
                                 <li>
                                     <a href="#"
-                                    >Product
-                                        <span>Total</span>
+                                    >{{trans('procced_checkout.Product')}}
+                                        <span>{{trans('procced_checkout.Total2')}}</span>
                                     </a>
                                 </li>
                                 @foreach($cart as $c)
@@ -88,19 +88,19 @@
                             <ul class="list list_2">
                                 <li>
                                     <a href="#"
-                                    >Subtotal
+                                    >{{trans('procced_checkout.Subtotal')}}
                                         <span>${{$cart_total}}</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                    >Shipping
+                                    >{{trans('procced_checkout.Shipping')}}
                                         <span>Free</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                    >Total
+                                    >{{trans('procced_checkout.Total')}}
                                         <span>${{$cart_total}}</span>
                                     </a>
                                 </li>

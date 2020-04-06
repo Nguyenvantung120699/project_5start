@@ -3,16 +3,15 @@
 
 
 @section('content')
-
     <section class="home_banner_area mb-40">
         <div class="banner_inner d-flex align-items-center">
             <div class="container">
                 <div class="banner_content row">
                     <div class="col-lg-12">
-                        <p class="sub text-uppercase">Collection of handicrafts</p>
-                        <h3><span>Meet </span> Your  <br />Aesthetic  <span>Gaze</span></h3>
-                        <h4>Bring the essence of art with high spiritual values</h4>
-                        <a class="main_btn mt-40" href="">View Collection</a>
+                        <p class="sub text-uppercase">{{trans('home.banner_content')}}</p>
+                        <h3><span>{{trans('home.banner_content_1')}} </span> {{trans('home.banner_content_2')}}  <br />{{trans('home.banner_content_3')}}  <span>{{trans('home.banner_content_4')}}</span></h3>
+                        <h4>{{trans('home.banner_content_5')}}</h4>
+                        <a class="main_btn mt-40" href="">{{trans('home.button_banner_content')}}</a>
                     </div>
                 </div>
             </div>
@@ -28,9 +27,9 @@
                     <div class="single-feature">
                         <a href="#" class="title">
                             <i class="flaticon-money"></i>
-                            <h3>Money back gurantee</h3>
+                            <h3>{{trans('home.list_service_money')}}</h3>
                         </a>
-                        <p>Shall open divide a one</p>
+                        <p>{{trans('home.service_money')}}</p>
                     </div>
                 </div>
 
@@ -38,9 +37,9 @@
                     <div class="single-feature">
                         <a href="#" class="title">
                             <i class="flaticon-truck"></i>
-                            <h3>Free Delivery</h3>
+                            <h3>{{trans('home.list_service_delivery')}}</h3>
                         </a>
-                        <p>Shall open divide a one</p>
+                        <p>{{trans('home.service_delivery')}}</p>
                     </div>
                 </div>
 
@@ -48,9 +47,9 @@
                     <div class="single-feature">
                         <a href="#" class="title">
                             <i class="flaticon-support"></i>
-                            <h3>Alway support</h3>
+                            <h3>{{trans('home.list_service_support')}}</h3>
                         </a>
-                        <p>Shall open divide a one</p>
+                        <p>{{trans('home.service_support')}}</p>
                     </div>
                 </div>
 
@@ -58,9 +57,9 @@
                     <div class="single-feature">
                         <a href="#" class="title">
                             <i class="flaticon-blockchain"></i>
-                            <h3>Secure payment</h3>
+                            <h3>{{trans('home.list_service_payment')}}</h3>
                         </a>
-                        <p>Shall open divide a one</p>
+                        <p>{{trans('home.service_payment')}}</p>
                     </div>
                 </div>
             </div>
@@ -74,8 +73,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="main_title">
-                        <h2><span>Category Listing</span></h2>
-                        <p>Click on the catalog you want to see to know more about our products</p>
+                        <h2><span>{{trans('home.category_list')}}</span></h2>
+                        <p>{{trans('home.category_list_introduce')}}</p>
                     </div>
                 </div>
             </div>
@@ -111,10 +110,10 @@
             <div class="row justify-content-center">
                 <div class="offset-lg-4 col-lg-6 text-center">
                     <div class="offer_content">
-                        <h3 class="text-uppercase mb-40"><b>All brand products "Gom Bat Trang"</b></h3>
-                        <h2 class="text-uppercase"><b>50% off</b></h2>
-                        <a href="{{url("/thuong-hieu/2")}}" class="main_btn mb-20 mt-5">Discover Now</a>
-                        <p><b>Limited Time Offer</b></p>
+                        <h3 class="text-uppercase mb-40"><b>{{trans('home.text_offer')}}</b></h3>
+                        <h2 class="text-uppercase"><b>{{trans('home.offer_sale_off')}}</b></h2>
+                        <a href="{{url("/thuong-hieu/2")}}" class="main_btn mb-20 mt-5">{{trans('home.button_offer')}}</a>
+                        <p><b>{{trans('home.time_offer')}}</b></p>
                     </div>
                 </div>
             </div>
@@ -126,8 +125,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="main_title">
-                        <h2><span>Top Selling Products</span></h2>
-                        <p>The products below are many people choose and love</p>
+                        <h2><span>{{trans('home.product_selling')}}</span></h2>
+                        <p>{{trans('home.product_selling_introduce')}}</p>
                     </div>
                 </div>
             </div>

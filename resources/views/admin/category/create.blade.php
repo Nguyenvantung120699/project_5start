@@ -1,9 +1,8 @@
 @extends("admin.layout")
-
+<script src="{{asset("js/jquery-3.2.1.min.js")}}"></script>
 @section("top_content")
 <h2>Create Category</h2>
 @endsection
-
 @section("main_content")
 
 <div id="loginbox">

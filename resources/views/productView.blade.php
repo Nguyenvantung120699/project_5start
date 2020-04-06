@@ -8,12 +8,12 @@
                     class="banner_content d-md-flex justify-content-between align-items-center"
                 >
                     <div class="mb-3 mb-md-0">
-                        <h2>Product Details</h2>
-                        <p>Very us move be blessed multiply night</p>
+                        <h2>{{trans('viewproduct.product_details')}}</h2>
+                        <p>{{trans('viewproduct.product_details_introduce')}}</p>
                     </div>
                     <div class="page_link">
-                        <a href="index.html">Home</a>
-                        <a href="single-product.html">Product Details</a>
+                        <a href="#">{{trans('viewproduct.home')}}</a>
+                        <a href="#">{{trans('viewproduct.product_details')}}</a>
                     </div>
                 </div>
             </div>
@@ -84,18 +84,21 @@
                         <h2>${{$product->getprice()}}</h2>
                         <ul class="list">
                             <li>
-                                <a href="#"><span>Category</span> : {{$product->Category->category_name}}</a>
+                                <a href="#"><span>{{trans('viewproduct.category')}}</span> : {{$product->Category->category_name}}</a>
                             </li>
                             <li>
-                                <p><a href="#"> <span>Brand</span> : {{$product->Brand->brand_name}}</a><br></p>
-                                <a href="#"> <span>Qty</span> : {{$product->quantity}}</a>
+                                <p><a href="#"> <span>{{trans('viewproduct.brand')}}</span> : {{$product->Brand->brand_name}}</a><br></p>
+                                <a href="#"> <span>{{trans('viewproduct.qty')}}</span> : {{$product->quantity}}</a>
                             </li>
                         </ul>
                         <p>
                             {{$product->product_desc}}
                         </p>
-                        <div class="product_count">
-                            <label for="qty">Quantity:</label>
+                        <form action="{{url("shopping/{$product->id}")}}" method="post">
+                            @csrf
+
+                            <div class="product_count">
+                                <label for="qty">{{trans('viewproduct.quantity')}}:</label>
                                 <input
                                     type="text"
                                     name="qty"
@@ -119,17 +122,17 @@
                                 >
                                     <i class="lnr lnr-chevron-down"></i>
                                 </button>
-                           </form>
-                        </div>
-                        <div class="card_area">
-                            <a class="main_btn" href="{{url("shopping/{$product->id}")}}">Add to Cart</a>
-                            <a class="icon_btn" href="#">
-                                <i class="lnr lnr lnr-diamond"></i>
-                            </a>
-                            <a class="icon_btn" href="#">
-                                <i class="lnr lnr lnr-heart"></i>
-                            </a>
-                        </div>
+                            </div>
+                            <div class="card_area">
+                                <button class="main_btn" type="submit">{{trans('viewproduct.cart')}}</button>
+                                <a class="icon_btn" href="#">
+                                    <i class="lnr lnr lnr-diamond"></i>
+                                </a>
+                                <a class="icon_btn" href="#">
+                                    <i class="lnr lnr lnr-heart"></i>
+                                </a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -148,7 +151,7 @@
                         role="tab"
                         aria-controls="home"
                         aria-selected="true"
-                    >Description</a
+                    >{{trans('viewproduct.description')}}</a
                     >
                 </li>
                 <li class="nav-item">
@@ -160,7 +163,7 @@
                         role="tab"
                         aria-controls="review"
                         aria-selected="false"
-                    >Reviews</a
+                    >{{trans('viewproduct.reviews')}}</a
                     >
                 </li>
             </ul>
@@ -172,33 +175,10 @@
                     aria-labelledby="home-tab"
                 >
                     <p>
-                        Beryl Cook is one of Britain’s most talented and amusing artists
-                        .Beryl’s pictures feature women of all shapes and sizes enjoying
-                        themselves .Born between the two world wars, Beryl Cook eventually
-                        left Kendrick School in Reading at the age of 15, where she went
-                        to secretarial school and then into an insurance office. After
-                        moving to London and then Hampton, she eventually married her next
-                        door neighbour from Reading, John Cook. He was an officer in the
-                        Merchant Navy and after he left the sea in 1956, they bought a pub
-                        for a year before John took a job in Southern Rhodesia with a
-                        motor company. Beryl bought their young son a box of watercolours,
-                        and when showing him how to use it, she decided that she herself
-                        quite enjoyed painting. John subsequently bought her a child’s
-                        painting set for her birthday and it was with this that she
-                        produced her first significant work, a half-length portrait of a
-                        dark-skinned lady with a vacant expression and large drooping
-                        breasts. It was aptly named ‘Hangover’ by Beryl’s husband and
+                    {{trans('viewproduct.description1')}}
                     </p>
                     <p>
-                        It is often frustrating to attempt to plan meals that are designed
-                        for one. Despite this fact, we are seeing more and more recipe
-                        books and Internet websites that are dedicated to the act of
-                        cooking for one. Divorce and the death of spouses or grown
-                        children leaving for college are all reasons that someone
-                        accustomed to cooking for more than one would suddenly need to
-                        learn how to adjust all the cooking practices utilized before into
-                        a streamlined plan of cooking that is more efficient for one
-                        person creating less
+                    {{trans('viewproduct.description2')}}
                     </p>
                 </div>
                     
@@ -213,68 +193,58 @@
                             <div class="row total_rate">
                                 <div class="col-6">
                                     <div class="box_total">
-                                        <h5>Overall</h5>
+                                        <h5>{{trans('viewproduct.overall')}}</h5>
                                         <h4 >{{number_format($rate->avg('rate'),2)}}</h4>
                                         @if(!count($rate)==0)
-                                            <h6>({{count($rate)}} Reviews)</h6>
+                                            <h6>({{count($rate)}} {{trans('viewproduct.no_reviews1')}})</h6>
                                         @else
-                                            <h6>(No Reviews)</h6>
+                                            <h6>({{trans('viewproduct.no_reviews2')}})</h6>
                                         @endif
 
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="rating_list">
-                                        <h3>Based on {{count($rate)}} Reviews</h3>
+                                        <h3>{{trans('viewproduct.based_on')}} {{count($rate)}} {{trans('viewproduct.no_reviews1')}}</h3>
                                         <ul class="list">
                                             <li>
                                                 <a href="#"
-                                                >5 Star
+                                                >5 {{trans('viewproduct.star')}}
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",5))}}</a
+                                                    <i class="fa fa-star"></i> - {{count($rate->where("rate",5))}}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a href="#"
-                                                >4 Star
+                                                >4 {{trans('viewproduct.star')}}
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",4))}}</a
+                                                    <i class="fa fa-star"></i> - {{count($rate->where("rate",4))}}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a href="#"
-                                                >3 Star
+                                                >3 {{trans('viewproduct.star')}}
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",3))}}</a
+                                                    <i class="fa fa-star"></i> - {{count($rate->where("rate",3))}}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a href="#"
-                                                >2 Star
+                                                >2 {{trans('viewproduct.star')}}
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",2))}}</a
+                                                    <i class="fa fa-star"></i> - {{count($rate->where("rate",2))}}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a href="#"
-                                                >1 Star
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> {{count($rate->where("rate",1))}}</a
+                                                >1 {{trans('viewproduct.star')}}
+                                                    <i class="fa fa-star"></i> - {{count($rate->where("rate",1))}}</a
                                                 >
                                             </li>
                                         </ul>
@@ -321,12 +291,12 @@
                                                 {{$r->message}}
                                             </p>
                                                 <p>
-                                                    <a class="float-right btn btn-info text-white ml-2"> <i class="fa fa-reply"></i> Reply</a>
-                                                    <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                                                    <a class="float-right btn btn-info text-white ml-2"> <i class="fa fa-reply"></i>{{trans('viewproduct.reply')}}</a>
+                                                    <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i>{{trans('viewproduct.like')}}</a>
                                             </p>
                                         </div>
                                         @empty
-                                        <p>chưa có đánh giá</p>
+                                        <p>{{trans('viewproduct.feedback')}}</p>
                                         @endforelse
 
                                         <div class="product_pagination">
