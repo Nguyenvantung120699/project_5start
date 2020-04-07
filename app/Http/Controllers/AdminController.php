@@ -361,7 +361,7 @@ class AdminController extends Controller
     // function order
     public function order()
     {
-        $order = DB::table('order')->get();
+        $order = DB::table('order')->orderBy('created_at','desc')->get();
         return view('admin.order',['order'=>$order]);
     }
 
