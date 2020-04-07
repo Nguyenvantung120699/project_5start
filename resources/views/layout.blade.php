@@ -42,11 +42,11 @@
                         <span class="lnr lnr-envelope"></span>
                     </span>
                 </div>
-                <div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
+                <div class="wrap-input100 validate-input m-b-16" data-validate = "password">
                     <input type="password" name="password" class="form-control input100" placeholder="password"/>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                        <span class="lnr lnr-envelope"></span>
+                        <span class="lnr lnr-lock"></span>
                     </span>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                         <img src="{{ asset("/login_v11/images/icons/icon-google.png")}}" alt="GOOGLE">
                         Google
                 </a>
-                <div class="text-center w-full p-t-115">
+                <div class="text-center w-full p-t-30">
                         <span class="txt1">
                                 Not a member?
                         </span>
