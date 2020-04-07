@@ -4,6 +4,10 @@ Route::get('home',"AdminController@homeadmin");
 //route brand
 Route::get('brand',"AdminController@brand");
 Route::get('brand/create',"AdminController@brandCreate");
+//route xử lý upload và crop image
+// Route::post('brand/upload', 'AdminController@postUpload');
+// Route::post('brand/crop', 'AdminController@postCrop');
+
 Route::post('brand/store',"AdminController@brandStore");
 Route::get('brand/edit/{id}',"AdminController@brandEdit");
 Route::post('brand/update/{id}',"AdminController@brandUpdate");
@@ -30,3 +34,7 @@ Route::post('user/store',"AdminController@userStore");
 Route::get('user/edit/{id}',"AdminController@userEdit");
 Route::post('user/update/{id}',"AdminController@userUpdate");
 Route::get('user/delete/{id}',"AdminController@userDestroy");
+//route feed back
+Route::get('feedback',"AdminController@feedBackNow");
+//route order
+Route::get('order',"AdminController@order");

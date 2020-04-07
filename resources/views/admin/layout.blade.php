@@ -58,9 +58,8 @@
         <li><a href="{{url("/admin/brand")}}">Brand</a></li>
         <li><a href="{{url("/admin/product")}}">Product</a></li>
         <li><a href="{{url("/admin/user")}}">User</a></li>
-        <li><a href="#">Order</a></li>
-        <li><a href="#">Order_Product</a></li>
-        <li><a href="#">FeedBack</a></li>
+        <li><a href="{{url("/admin/order")}}">Order</a></li>
+        <li><a href="{{url("/admin/feedback")}}">FeedBack</a></li>
       </ul>
     </li>
     <li class="content"> <span>Monthly Bandwidth Transfer</span>
