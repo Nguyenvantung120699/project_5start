@@ -34,3 +34,7 @@ Route::post('user/store',"AdminController@userStore");
 Route::get('user/edit/{id}',"AdminController@userEdit");
 Route::post('user/update/{id}',"AdminController@userUpdate");
 Route::get('user/delete/{id}',"AdminController@userDestroy");
+//route feed back
+Route::get('feedback',"AdminController@feedBackNow");
+//route order
+Route::get('order',"AdminController@order");

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Feedback_product;
+use App\Order;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Brand;
@@ -9,6 +11,7 @@ use App\Product;
 use App\User;
 
 use App\Models\Image;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
@@ -349,7 +352,18 @@ class AdminController extends Controller
         }
         return redirect()->to("admin/user");
     }
-
+    // function feedback
+    public function feedBackNow()
+    {
+            $feedBack = DB::table('feedback')->orderBy('desc')->get();
+            return view('admin.feedback',['feedback'=>$feedBack]);
+    }
+    // function order
+    public function order()
+    {
+        $order = DB::table('order')->orderBy('desc')->get();
+        return view('admin.order',['order'=>$order]);
+    }
 
 
 
