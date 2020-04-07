@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderCreated;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -215,8 +216,26 @@ class Controller extends BaseController
                 'price'=>$p->price
             ]);
         }
+        Mail::to(Auth::user()->email)->send(new OrderCreated($order));
         return redirect()->to("/checkout-success");
     }
+
+    public function deleteOrder($id)
+    {
+        $order = Order::find($id);
+        try {
+            if ($order->status != Order::STATUS_CANCEL) {
+                $order->status = Order::STATUS_CANCEL;
+                $order->save();
+            }
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
+        Mail::to(Auth::user()->email)->send(new CancelOrder($order));
+        return redirect()->to("listOrder");
+    }
+
+
     public function checkoutSuccess(){
         return view("checkoutSuccess");
     }
@@ -299,7 +318,7 @@ public function postLogin(Request $request){
                 "email" => 'required|email',
                 "password"=> "required|min:8"
             ]);
-    
+
             if($validator->fails()){
                 return response()->json(["status"=>false,"message"=>$validator->errors()->first()]);
             }
