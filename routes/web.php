@@ -42,6 +42,8 @@ Route::get("viewOrder/{id}",'Controller@getOrderPurchased')->middleware("auth");
 Route::get("repurchase/{id}",'Controller@repurchase')->middleware("auth");
 Route::get("search",'Controller@getSearch');
 Route::post("feedback",'Controller@feedback');
+Route::post("deleteItemCart/{id}",'Controller@deleteItemCart');
+
 Auth::routes();
 
 Route::get("test",function (){

@@ -287,6 +287,23 @@ class Controller extends BaseController
         return redirect()->to("/checkout-success");
     }
 
+    public function deleteItemCart($id){
+        $cartOld = session()->get("cart");
+        session()->forget("cart");
+        $cart=session()->get("cart");
+        if($cart == null){
+            $cart = [];
+        }
+        foreach ($cartOld as $c){
+            if ($c->id !=$id){
+                $product = Product::find($c->id);
+                $product->cart_qty =$c->cart_qty;
+                $cart[] = $product;
+                session(["cart"=>$cart]);
+            }
+        }
+        return redirect()->to("/cart");
+    }
 
 
 //ajax
@@ -310,4 +327,6 @@ public function postLogin(Request $request){
             }
             return response()->json(['status'=>false,'message'=>"login failure"]);
         }
+
+
 }
