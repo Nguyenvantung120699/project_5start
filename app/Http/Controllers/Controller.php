@@ -215,6 +215,7 @@ class Controller extends BaseController
                 'price'=>$p->price
             ]);
         }
+         // Mail::to(Auth::user()->email)->send(new OrederCreate($order));
         return redirect()->to("/checkout-success");
     }
     public function checkoutSuccess(){
@@ -286,6 +287,66 @@ class Controller extends BaseController
         }
         return redirect()->to("/checkout-success");
     }
+
+
+
+    
+    public function deleteOrder($id)
+    {
+        $order = Order::find($id);
+        try {
+            if ($order->status != Order::STATUS_CANCEL) {
+                $order->status = Order::STATUS_CANCEL;
+                $order->save();
+            }
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
+    //    Mail::to(Auth::user()->email)->send(new CancelOrder($order));
+            return redirect()->to("/deletecomplete");
+    }
+
+    public function deleteComplete(){
+        return view('deleteCompelete');
+    }
+
+
+    private function formatOrder($order)
+    {
+        switch ($order->payment_total) {
+            case 'cod':
+                $order->payment_total = 'Cheque Payment';
+                break;
+            case 'paypal':
+                $order->payment_total = 'Paypal';
+                break;
+
+        }
+        switch ($order->status) {
+            case '0':
+                $order->status = 'STATUS_PENDING';
+                break;
+
+            case '1':
+                $order->status = 'STATUS_PROCESS';
+                break;
+
+            case '2':
+                $order->status = 'STATUS_SHIPPING';
+                break;
+
+            case '3':
+                $order->status = 'STATUS_COMPLETE';
+                break;
+
+            case '4':
+                $order->status = 'STATUS_CANCEL';
+                break;
+        }
+        return $order;
+    }
+
+
 
     public function deleteItemCart($id){
         $cartOld = session()->get("cart");
