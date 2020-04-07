@@ -355,13 +355,13 @@ class AdminController extends Controller
     // function feedback
     public function feedBackNow()
     {
-            $feedBack = DB::table('feedback')->orderBy('desc')->get();
+            $feedBack = DB::table('feedback')->get();
             return view('admin.feedback',['feedback'=>$feedBack]);
     }
     // function order
     public function order()
     {
-        $order = DB::table('order')->orderBy('desc')->get();
+        $order = DB::table('order')->get();
         return view('admin.order',['order'=>$order]);
     }
 
