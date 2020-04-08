@@ -39,7 +39,18 @@
     <p>Chúng tôi sẽ cập nhật thông tin đơn hàng khi có thay đổi. vui lòng để lại những đánh giá của bạn về chúng tôi để chúng tôi có những cải tiến tốt hơn</p>
     <b>Xin Cảm ơn!</b>
     <!-- Modal -->
-    <a href="{{url("/")}}" class="btn btn-primary">{{trans('checkout_success.Continue_Shopping')}}</a>
+    <div>
+      @foreach($cart as $p)
+        <p>name : {{$cart->product_name}}</p>
+        <img src="{{asset($p->thumbnail)}}" alt="">
+        <p>qty : {{$cart->cart_qty}}</p>
+        <p>price : {{$cart->price}}</p>
+      @endforeach
+      <b>total : {{$order->grand_total}}</b>
+      <b>payment_method : {{$order->payment_method}}</b>
+      <b>shipping_address : {{$order->shipping_address}}</b>
+    </div>
+    <a href="{{url("/")}}" class="btn btn-primary">tiếp tục mua</a>
 </div>
 </body>
 

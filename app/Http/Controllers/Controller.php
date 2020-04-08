@@ -201,6 +201,7 @@ class Controller extends BaseController
             "status"=> Order::STATUS_PENDING
         ]);
         foreach ($cart as $p){
+            dd($cart);
             $product = Product::find($p->id);  
             $product->update([
                 "quantity" => $product->quantity-$p->cart_qty,
@@ -215,8 +216,7 @@ class Controller extends BaseController
                 'price'=>$p->price
             ]);
         }
-        Mail::to(Auth::user()->email)->send(new OrderCreated($order));
-        session()->forget('cart');
+        Mail::to(Auth::user()->email)->send(new OrderCreated($order,$cart));
         return redirect()->to("/checkout-success");
     }
 
