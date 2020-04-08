@@ -15,4 +15,4 @@ yarn-error.log
 .env
 config/database.php
 
-public/upload
+public/uploads

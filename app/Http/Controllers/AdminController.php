@@ -102,8 +102,8 @@ class AdminController extends Controller
                 $file_name = time()."_".$file->getClientOriginalName();
                 $ext = $file->getClientOriginalExtension();
                 if(in_array($ext,$ext_allow)){
-                    $file->move("upload",$file_name);
-                    $image = "upload/".$file_name;
+                    $file->move("uploads",$file_name);
+                    $image = "uploads/".$file_name;
                 }       
             }
             Category::create([
@@ -134,8 +134,8 @@ class AdminController extends Controller
                 $file_name = time()."_".$file->getClientOriginalName();
                 $ext = $file->getClientOriginalExtension();
                 if(in_array($ext,$ext_allow)){
-                    $file->move("upload",$file_name);
-                    $image = "upload/".$file_name;
+                    $file->move("uploads",$file_name);
+                    $image = "uploads/".$file_name;
                 }       
             }
             $categories->update([
@@ -188,8 +188,8 @@ class AdminController extends Controller
                 $file_name = time()."_".$file->getClientOriginalName();
                 $ext = $file->getClientOriginalExtension();
                 if(in_array($ext,$ext_allow)){
-                    $file->move("upload",$file_name);
-                    $thumbnail = "upload/".$file_name;
+                    $file->move("uploads",$file_name);
+                    $thumbnail = "uploads/".$file_name;
                 }      
             }
 
@@ -200,8 +200,8 @@ class AdminController extends Controller
                 $file_gname = time()."_".$fileg->getClientOriginalName();
                 $extg = $fileg->getClientOriginalExtension();
                 if(in_array($extg,$ext_allowg)){
-                    $fileg->move("upload",$file_gname);
-                    $gallery = "upload/".$file_gname;
+                    $fileg->move("uploads",$file_gname);
+                    $gallery = "uploads/".$file_gname;
                 }      
             }
             Product::create([
@@ -245,8 +245,8 @@ class AdminController extends Controller
                 $file_namee = time()."_".$filee->getClientOriginalName();
                 $exte = $filee->getClientOriginalExtension();
                 if(in_array($exte,$ext_allowe)){
-                    $filee->move("upload",$file_namee);
-                    $thumbnaile = "upload/".$file_namee;
+                    $filee->move("uploads",$file_namee);
+                    $thumbnaile = "uploads/".$file_namee;
                 }      
             }
 
@@ -257,8 +257,8 @@ class AdminController extends Controller
                 $file_gename = time()."_".$filege->getClientOriginalName();
                 $extg = $filege->getClientOriginalExtension();
                 if(in_array($extg,$ext_allowge)){
-                    $filege->move("upload",$file_gename);
-                    $gallerye = "upload/".$file_gename;
+                    $filege->move("uploads",$file_gename);
+                    $gallerye = "uploads/".$file_gename;
                 }      
             }
             $product->update([
