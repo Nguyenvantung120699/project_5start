@@ -41,10 +41,10 @@
     <!-- Modal -->
     <div>
       @foreach($cart as $p)
-        <p>name : {{$cart->product_name}}</p>
+        <p>name : {{$p->product_name}}</p>
         <img src="{{asset($p->thumbnail)}}" alt="">
-        <p>qty : {{$cart->cart_qty}}</p>
-        <p>price : {{$cart->price}}</p>
+        <p>qty : {{$p->cart_qty}}</p>
+        <p>price : {{$p->price}}</p>
       @endforeach
       <b>total : {{$order->grand_total}}</b>
       <b>payment_method : {{$order->payment_method}}</b>
