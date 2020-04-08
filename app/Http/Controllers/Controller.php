@@ -44,7 +44,6 @@ class Controller extends BaseController
     public function rate(){
         $product=\App\Product::find(2);
         $rate = \App\Feedback_product::where("product_id",$product->id)->get();
-//        dd($rate);
         return view("star",['rate'=>$rate]);
     }
     public function product($id){
