@@ -3,7 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
-
+/public/anh
 
 .env
 .env.backup
@@ -14,5 +14,3 @@ npm-debug.log
 yarn-error.log
 .env
 config/database.php
-
-public/upload
