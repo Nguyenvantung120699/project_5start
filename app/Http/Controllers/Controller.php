@@ -201,7 +201,6 @@ class Controller extends BaseController
             "status"=> Order::STATUS_PENDING
         ]);
         foreach ($cart as $p){
-            dd($cart);
             $product = Product::find($p->id);  
             $product->update([
                 "quantity" => $product->quantity-$p->cart_qty,
