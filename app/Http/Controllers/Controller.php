@@ -39,6 +39,7 @@ class Controller extends BaseController
     public function home(){
         $categories=Category::all();
         $purchased = Product::orderBy('purchase','desc')->take(8)->get();
+        dd($categories);
         return view("home",['categories'=>$categories,'purchased'=>$purchased]);
         }
     public function rate(){
