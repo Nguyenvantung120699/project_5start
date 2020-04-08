@@ -151,18 +151,6 @@ class Controller extends BaseController
         }
         return redirect()->to("/cart");
     }
-//    public function deleteItemCart($id,Request $request){
-//        if(!$cart=session()->has("cart")){
-//            return redirect()->to("/");
-//        }
-//        $cart =$request-> session()->get('cart');
-//        $request-> session()->forget("cart");
-//        foreach ($cart as $p){
-//            if($p->id !=$id){
-//            }
-//        }
-//        return redirect()->to("/cart");
-//    }
     public function clearCart(Request $request){
         $request->session()->forget("cart");
         return redirect()->to("/");
@@ -201,6 +189,7 @@ class Controller extends BaseController
             "status"=> Order::STATUS_PENDING
         ]);
         foreach ($cart as $p){
+
             $product = Product::find($p->id);  
             $product->update([
                 "quantity" => $product->quantity-$p->cart_qty,

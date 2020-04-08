@@ -40,7 +40,7 @@
     <p>Vui lòng giữ bảo mật thông tin tài khoản để trách các trường hợp xảy ra rủi ro</p>
     <b>Xin Cảm ơn!</b>
     <!-- Modal -->
-    <a href="{{url("/")}}" class="btn btn-primary">{{trans('checkout_success.Continue_Shopping')}}</a>
+    <a href="{{url("/")}}" class="btn btn-primary">Khám Phá Ngay</a>
 </div>
 </body>
 
