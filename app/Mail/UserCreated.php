@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,6 +12,8 @@ class UserCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
+    // public $users;
+
     /**
      * Create a new message instance.
      *
@@ -18,7 +21,7 @@ class UserCreated extends Mailable
      */
     public function __construct()
     {
-        //
+        // $this->users = $users;
     }
 
     /**

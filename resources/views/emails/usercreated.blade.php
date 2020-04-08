@@ -1,49 +1,53 @@
-<td class="esd-stripe" align="center" esd-custom-block-id="88658">
-    <table class="es-content-body" style="background-color: transparent;" width="600" cellspacing="0" cellpadding="0" align="center">
-        <tbody>
-        <tr>
-            <td class="esd-structure es-p10t es-p10b es-p10r es-p10l" esd-general-paddings-checked="false" align="left">
-                <!--[if mso]><table width="580" cellpadding="0" cellspacing="0"><tr><td width="369" valign="top"><![endif]-->
-                <table class="es-left" cellspacing="0" cellpadding="0" align="left">
-                    <tbody>
-                    <tr>
-                        <td class="es-m-p0r es-m-p20b esd-container-frame" width="369" valign="top" align="center">
-                            <table width="100%" cellspacing="0" cellpadding="0">
-                                <tbody>
-                                <tr>
-                                    <td class="esd-block-text es-infoblock" align="left">
-                                        <p style="line-height: 150%;">Put your preheader text here</p>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <!--[if mso]></td><td width="20"></td><td width="191" valign="top"><![endif]-->
-                <table cellspacing="0" cellpadding="0" align="right">
-                    <tbody>
-                    <tr>
-                        <td class="esd-container-frame" width="191" align="left">
-                            <table width="100%" cellspacing="0" cellpadding="0">
-                                <tbody>
-                                <tr>
-                                    <td esdev-links-color="#666666" align="right" class="esd-block-text es-infoblock">
-                                        <p style="line-height: 150%;"><a href="https://viewstripo.email" target="_blank" class="view">Not displaying correctly?</a></p>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <!--[if mso]></td></tr></table><![endif]-->
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</td>
+@component('mail::message')
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="utf-8" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{{asset("css/bootstrap.css")}}">
+  <link rel="stylesheet" href="{{asset("vendors/linericon/style.css")}}" >
+  <link rel="stylesheet" href="{{asset("css/font-awesome.min.css")}}" >
+  <link rel="stylesheet" href="{{asset("css/themify-icons.css")}}" >
+  <link rel="stylesheet" href="{{asset("css/flaticon.css")}}" >
+  <link rel="stylesheet" href="{{asset("vendors/owl-carousel/owl.carousel.min.css")}}" >
+  <link rel="stylesheet" href="{{asset("vendors/lightbox/simpleLightbox.css")}}" >
+  <link rel="stylesheet" href="{{asset("vendors/nice-select/css/nice-select.css")}}" >
+  <link rel="stylesheet" href="{{asset("vendors/animate-css/animate.css")}}" >
+  <link rel="stylesheet" href="{{asset("vendors/jquery-ui/jquery-ui.css")}}" >
+  <!-- main css -->
+  <link rel="stylesheet" href="{{asset("css/style.css")}}">
+  <link rel="stylesheet" href="{{asset("css/responsive.css")}}" >
 
+  <!--<script type="text/javascript" src="{{asset("js/jquery-3.4.1.js")}}"></script>
+	<link rel="icon" type="image/png" href="{{ asset("login_v11/images/icons/favicon.ico")}}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset("login_v11/fonts/font-awesome-4.7.0/css/font-awesome.min.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{ asset("login_v11/fonts/Linearicons-Free-v1.0.0/icon-font.min.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{ asset("login_v11/vendor/animate/animate.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{ asset("login_v11/vendor/css-hamburgers/hamburgers.min.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{ asset("login_v11/vendor/select2/select2.min.css")}}">-->
+  <link rel="stylesheet" type="text/css" href="{{ asset("login_v11/css/util.css")}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset("login_v11/vendor/bootstrap/css/bootstrap.min.css")}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset("login_v11/css/main.css")}}">
+
+</head>
+
+<body>
+<div class="checkout-success" style="text-align: center ;padding-bottom: 100px">
+
+    <img src="{{asset("img/success.jpg")}} " alt="" style="width: 70px;height: 70px">
+    <h3>Cảm Ơn Bạn đã Đăng Kí Tài Khỏan Trên Hệ Thống của chúng tôi</h3>
+    <p>Vui lòng giữ bảo mật thông tin tài khoản để trách các trường hợp xảy ra rủi ro</p>
+    <b>Xin Cảm ơn!</b>
+    <!-- Modal -->
+    <a href="{{url("/")}}" class="btn btn-primary">{{trans('checkout_success.Continue_Shopping')}}</a>
+</div>
+</body>
+
+</html>
+
+@component('mail::button', ['url' => ''])
+@endcomponent
+
+{{ config('app.name') }}
+@endcomponent

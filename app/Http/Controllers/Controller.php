@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderCreated;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -201,7 +202,7 @@ class Controller extends BaseController
             "status"=> Order::STATUS_PENDING
         ]);
         foreach ($cart as $p){
-            $product = Product::find($p->id);
+            $product = Product::find($p->id);  
             $product->update([
                 "quantity" => $product->quantity-$p->cart_qty,
                 "purchase" => $product->purchase+$p->cart_qty,
@@ -215,11 +216,29 @@ class Controller extends BaseController
                 'price'=>$p->price
             ]);
         }
-         // Mail::to(Auth::user()->email)->send(new OrederCreate($order));
+        Mail::to(Auth::user()->email)->send(new OrderCreated($order));
+        session()->forget('cart');
         return redirect()->to("/checkout-success");
     }
+
+    public function deleteOrder($id)
+    {
+        $order = Order::find($id);
+        try {
+            if ($order->status != Order::STATUS_CANCEL) {
+                $order->status = Order::STATUS_CANCEL;
+                $order->save();
+            }
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
+        Mail::to(Auth::user()->email)->send(new CancelOrder($order));
+        return redirect()->to("listOrder");
+    }
+
+
     public function checkoutSuccess(){
-        return view("checkoutSuccess");
+        return view("checkoutSuccess"); 
     }
     public function feedback(Request $request){
         $request->validate([
@@ -285,65 +304,13 @@ class Controller extends BaseController
                 'price'=>$p->pivot->price
             ]);
         }
+        Mail::to(Auth::user()->email)->send(new OrderCreated($order));
         return redirect()->to("/checkout-success");
     }
 
 
-
-    
-    public function deleteOrder($id)
-    {
-        $order = Order::find($id);
-        try {
-            if ($order->status != Order::STATUS_CANCEL) {
-                $order->status = Order::STATUS_CANCEL;
-                $order->save();
-            }
-        } catch (\Exception $e) {
-            return redirect()->back();
-        }
-    //    Mail::to(Auth::user()->email)->send(new CancelOrder($order));
-            return redirect()->to("/deletecomplete");
-    }
-
     public function deleteComplete(){
         return view('deleteCompelete');
-    }
-
-
-    private function formatOrder($order)
-    {
-        switch ($order->payment_total) {
-            case 'cod':
-                $order->payment_total = 'Cheque Payment';
-                break;
-            case 'paypal':
-                $order->payment_total = 'Paypal';
-                break;
-
-        }
-        switch ($order->status) {
-            case '0':
-                $order->status = 'STATUS_PENDING';
-                break;
-
-            case '1':
-                $order->status = 'STATUS_PROCESS';
-                break;
-
-            case '2':
-                $order->status = 'STATUS_SHIPPING';
-                break;
-
-            case '3':
-                $order->status = 'STATUS_COMPLETE';
-                break;
-
-            case '4':
-                $order->status = 'STATUS_CANCEL';
-                break;
-        }
-        return $order;
     }
 
 
@@ -377,7 +344,7 @@ public function postLogin(Request $request){
                 "email" => 'required|email',
                 "password"=> "required|min:8"
             ]);
-    
+
             if($validator->fails()){
                 return response()->json(["status"=>false,"message"=>$validator->errors()->first()]);
             }

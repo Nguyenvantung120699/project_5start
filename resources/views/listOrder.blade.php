@@ -31,6 +31,7 @@
                             <th scope="col">Telephone</th>
                             <th scope="col">Payment_method</th>
                             <th scope="col">Grand_total</th>
+                            <th>status</th>
                             <th scope="col">Action</th>
 
                         </tr>
@@ -43,6 +44,23 @@
                                 <td>{{$p->telephone}}</td>
                                 <td>{{$p->payment_method}}</td>
                                 <td>{{$p->grand_total}}</td>
+                                <td>
+                                @if($p->status==0)
+                                    đang chờ xác nhận
+                                @endif
+                                @if($p->status==1)
+                                    đã xác nhận
+                                @endif
+                                @if($p->status==2)
+                                    đang vận chuyển
+                                @endif
+                                @if($p->status==3)
+                                    đã giao
+                                @endif
+                                @if($p->status==4)
+                                    đã hủy đơn
+                                @endif
+                                </td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                         <div class="btn-group" role="group">
