@@ -10,6 +10,8 @@ use App\Brand;
 use App\Product;
 use App\User;
 
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -17,6 +19,21 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\File;
+
+use App\Mail\DeliverySuccessfully;
+
+
+use App\Mail\OrderCreated;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
+
+use App\Mail\OrederCreate;
+use App\OrderProduct;
+use App\Mail\CancelOrder;
+use Illuminate\Support\Facades\Session;
+
 
 class AdminController extends Controller
 {
@@ -360,9 +377,15 @@ class AdminController extends Controller
     }
     // function order
     public function order()
-    {
-        $order = DB::table('order')->orderBy('created_at','desc')->get();
+    {   
+        $order = Order::orderBy('created_at','desc')->get();
         return view('admin.order',['order'=>$order]);
+    }
+
+    public function orderInfo($id){
+        $order = Order::find($id);
+        $product=$order->Products;
+        return view('admin.infoOrder',['product'=>$product,'order'=>$order]);
     }
 
 
@@ -379,6 +402,10 @@ class AdminController extends Controller
             ]);
         }catch(\Exception $e){
             return redirect()->back();
+        }
+        if($order->status==3)
+        {
+            Mail::to(Auth::user()->email)->send(new DeliverySuccessfully($order));
         }
         return redirect()->to("admin/order");
     }

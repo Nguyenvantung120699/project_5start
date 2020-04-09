@@ -56,9 +56,25 @@ class Controller extends BaseController
         $brand_product =Product::where("brand_id",$product->brand_id)->where('id',"!=",$product->id)->take(10)->get();
         return view('productView',['product'=>$product,'category_product'=>$category_product,'brand_product'=>$brand_product,'brand'=>$brand,'img'=>$img,'rate'=>$rate,'ratenew'=>$ratenew]);
     }
+    //group page
     public function contact(){
         return view("contact");
     }
+
+    public function blog(){
+        return view("blog");
+        }
+    public function blogDeltail(){
+        return view("blogDeltail");
+        }
+    public function tracking(){
+        return view("tracking");
+        }
+    public function elements(){
+        return view("elements");
+        }
+
+        
     public function listingCategory($id){
         $category = Category::find($id);
         $product=$category->Products()->paginate(9);
@@ -343,5 +359,6 @@ public function postLogin(Request $request){
             return response()->json(['status'=>false,'message'=>"login failure"]);
         }
 
-
+        //group fuction 
+    
 }

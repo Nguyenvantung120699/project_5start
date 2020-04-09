@@ -99,6 +99,5 @@
 </div>
 
 @includeIf("admin.html_admin.script")
-
 </body>
 </html>

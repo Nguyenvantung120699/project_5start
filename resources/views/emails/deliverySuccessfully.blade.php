@@ -9,26 +9,13 @@
     <b>Xin Cảm ơn!</b>
     <!-- Modal -->
     <div>
-    @foreach($cart as $p)
-      <div style="border-top: 1px solid;padding-top:10%;">
-          <p>tên sp : {{$p->product_name}}</p>
-          <div class="d-flex">
-              <img
-                  src="{{asset($p->thumbnail)}}"
-                  alt=""
-              />
-          </div>
-          <p>số lượng : {{$p->cart_qty}}</p>
-          <p>giá : {{$p->price}}</p>
-          </div>
-        @endforeach
     <div class="container" style="border-top: 1px solid;padding-top:10%;">
     <span><h3>Thông tin đơn hàng</h3></span>
         <p>mã đơn : {{$order->id}}</p></br>
         <p>Tổng Tiền : {{$order->grand_total}}</p></br>
         <p>Phương Thức Thanh Toán : {{$order->payment_method}}</p></br>
         <p>Địa chỉ : {{$order->shipping_address}}</p></br>
-        <p>Ngày đặt hàng : {{$order->created_at}}</p></br>
+        <p>Thời gian Giao : {{$order->updated_at}}</p></br>
       </div>
     </div>
     <a href="{{url("/")}}" class="btn btn-primary">tiếp tục mua</a>

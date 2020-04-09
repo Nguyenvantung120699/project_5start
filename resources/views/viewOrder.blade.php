@@ -87,18 +87,10 @@
                         @endforelse
                         <tr class="bottom_button">
                             <td>
-{{--                                <a class="gray_btn" href="{{url("/clear-cart")}}">Clear Cart</a>--}}
-                            </td>
-                            <td>
-
-                            </td>
-                            <td></td>
-                            <td>
+                                <a class="gray_btn" href="{{url("/clear-cart")}}">Clear Cart</a>
                             </td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
                             <td>
                                 <h5>Subtotal</h5>
                             </td>
@@ -107,9 +99,6 @@
                             </td>
                         </tr>
                         <tr class="out_button_area">
-                            <td></td>
-                            <td></td>
-                            <td></td>
                             <td>
                                 <div class="checkout_btn_inner">
                                     <a class="main_btn" href="{{url("repurchase/{$p->pivot->order_id}")}}">Proceed to checkout</a>

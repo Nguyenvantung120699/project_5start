@@ -38,6 +38,9 @@ Route::get('user/delete/{id}',"AdminController@userDestroy");
 Route::get('feedback',"AdminController@feedBackNow");
 //route order
 Route::get('order',"AdminController@order");
+Route::get('infoOrder/{id}',"AdminController@orderInfo");
 
 //status order
 Route::post('statusOrder/{id}',"AdminController@statusOrder");
+
+

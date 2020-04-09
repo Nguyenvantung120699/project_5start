@@ -17,7 +17,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>ID Order</th>
                             <th>Customer name</th>
                             <th>Shipping address</th>
                             <th>Telephone</th>
@@ -25,7 +25,7 @@
                             <th>Payment Method</th>
                             <th>Status</th>
                             <th>Created at</th>
-                            <th>Updated at</th>
+                            <th>Select</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -68,8 +68,12 @@
                                 </form>
                                 </td>
                                 <td>{{ $p->created_at }}</td>
-                                <td>{{ $p->updated_at }}</td>
-                            </tr>
+                                <td>
+                                    <a href="{{url("admin/infoOrder",['id'=>$p->id])}}">
+                                        <button class="btn btn-success">info product</button>
+                                    </a>
+                                </td>
+                        </tr>
                         @empty
                             <p>There are no orders!</p>
                         @endforelse
