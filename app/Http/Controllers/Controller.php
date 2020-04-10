@@ -58,7 +58,6 @@ class Controller extends BaseController
     public function rate(){
         $product=\App\Product::find(2);
         $rate = \App\Feedback_product::where("product_id",$product->id)->get();
-//        dd($rate);
         return view("star",['rate'=>$rate]);
     }
     public function product($id){
@@ -71,9 +70,25 @@ class Controller extends BaseController
         $brand_product =Product::where("brand_id",$product->brand_id)->where('id',"!=",$product->id)->take(10)->get();
         return view('productView',['product'=>$product,'category_product'=>$category_product,'brand_product'=>$brand_product,'brand'=>$brand,'img'=>$img,'rate'=>$rate,'ratenew'=>$ratenew]);
     }
+    //group page
     public function contact(){
         return view("contact");
     }
+
+    public function blog(){
+        return view("blog");
+        }
+    public function blogDeltail(){
+        return view("blogDeltail");
+        }
+    public function tracking(){
+        return view("tracking");
+        }
+    public function elements(){
+        return view("elements");
+        }
+
+
     public function listingCategory($id){
         $category = Category::find($id);
         $product=$category->Products()->paginate(9);
@@ -166,18 +181,6 @@ class Controller extends BaseController
         }
         return redirect()->to("/cart");
     }
-//    public function deleteItemCart($id,Request $request){
-//        if(!$cart=session()->has("cart")){
-//            return redirect()->to("/");
-//        }
-//        $cart =$request-> session()->get('cart');
-//        $request-> session()->forget("cart");
-//        foreach ($cart as $p){
-//            if($p->id !=$id){
-//            }
-//        }
-//        return redirect()->to("/cart");
-//    }
     public function clearCart(Request $request){
         $request->session()->forget("cart");
         return redirect()->to("/");
@@ -216,6 +219,7 @@ class Controller extends BaseController
             "status"=> Order::STATUS_PENDING
         ]);
         foreach ($cart as $p){
+
             $product = Product::find($p->id);
             $product->update([
                 "quantity" => $product->quantity-$p->cart_qty,
@@ -230,8 +234,26 @@ class Controller extends BaseController
                 'price'=>$p->price
             ]);
         }
+        Mail::to(Auth::user()->email)->send(new OrderCreated($order,$cart));
         return redirect()->to("/checkout-success");
     }
+
+    public function deleteOrder($id)
+    {
+        $order = Order::find($id);
+        try {
+            if ($order->status != Order::STATUS_CANCEL) {
+                $order->status = Order::STATUS_CANCEL;
+                $order->save();
+            }
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
+        Mail::to(Auth::user()->email)->send(new CancelOrder($order));
+        return redirect()->to("listOrder");
+    }
+
+
     public function checkoutSuccess(){
         return view("checkoutSuccess");
     }
@@ -299,9 +321,34 @@ class Controller extends BaseController
                 'price'=>$p->pivot->price
             ]);
         }
+        Mail::to(Auth::user()->email)->send(new OrderCreated($order));
         return redirect()->to("/checkout-success");
     }
 
+
+    public function deleteComplete(){
+        return view('deleteCompelete');
+    }
+
+
+
+    public function deleteItemCart($id){
+        $cartOld = session()->get("cart");
+        session()->forget("cart");
+        $cart=session()->get("cart");
+        if($cart == null){
+            $cart = [];
+        }
+        foreach ($cartOld as $c){
+            if ($c->id !=$id){
+                $product = Product::find($c->id);
+                $product->cart_qty =$c->cart_qty;
+                $cart[] = $product;
+                session(["cart"=>$cart]);
+            }
+        }
+        return redirect()->to("/cart");
+    }
 
 
 //ajax
@@ -314,7 +361,7 @@ public function postLogin(Request $request){
                 "email" => 'required|email',
                 "password"=> "required|min:8"
             ]);
-    
+
             if($validator->fails()){
                 return response()->json(["status"=>false,"message"=>$validator->errors()->first()]);
             }
@@ -325,4 +372,7 @@ public function postLogin(Request $request){
             }
             return response()->json(['status'=>false,'message'=>"login failure"]);
         }
+
+        //group fuction
+
 }

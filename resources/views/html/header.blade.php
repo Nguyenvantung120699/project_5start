@@ -70,10 +70,10 @@
                                        aria-expanded="false">Blog</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Blog</a>
+                                            <a class="nav-link" href="{{url("blog")}}">Blog</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Blog Details</a>
+                                            <a class="nav-link" href="{{url("blogDeltail")}}">Blog Details</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -83,10 +83,10 @@
                                        aria-expanded="false">Pages</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Tracking</a>
+                                            <a class="nav-link" href="{{url("tracking")}}">Tracking</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Elements</a>
+                                            <a class="nav-link" href="{{url("elements")}}">Elements</a>
                                         </li>
                                     </ul>
                                 </li>

@@ -26,7 +26,6 @@ Route::get("/","Controller@home");
 Route::get("/danh-muc/{id}","Controller@listingCategory");
 Route::get("/thuong-hieu/{id}","Controller@listingBrand");
 Route::get("/san-pham/{id}","Controller@product");
-Route::get("/contact","Controller@contact");
 Route::get("/shopping/{id}","Controller@shopping")->middleware("auth");
 Route::post("/shopping/{id}","Controller@pshopping")->middleware("auth");
 Route::get("/cart","Controller@cart")->middleware("auth");
@@ -42,6 +41,12 @@ Route::get("viewOrder/{id}",'Controller@getOrderPurchased')->middleware("auth");
 Route::get("repurchase/{id}",'Controller@repurchase')->middleware("auth");
 Route::get("search",'Controller@getSearch');
 Route::post("feedback",'Controller@feedback');
+
+Route::get("/deleteOrder/{id}",'Controller@deleteOrder')->middleware("auth");
+Route::get("/deletecomplete",'Controller@deleteComplete');
+
+Route::post("deleteItemCart/{id}",'Controller@deleteItemCart');
+
 Auth::routes();
 
 Route::get("test",function (){
@@ -69,3 +74,10 @@ Route::get('/logout',function (){
 
 
 Route::post("postLogin","Controller@postLogin");
+
+// group
+Route::get("/contact","Controller@contact");
+Route::get("/blog",'Controller@blog');
+Route::get("/blogDeltail",'Controller@blogDeltail');
+Route::get("/tracking",'Controller@tracking');
+Route::get("/elements",'Controller@elements');

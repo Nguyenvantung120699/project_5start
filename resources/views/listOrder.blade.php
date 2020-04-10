@@ -31,6 +31,7 @@
                             <th scope="col">Telephone</th>
                             <th scope="col">Payment_method</th>
                             <th scope="col">Grand_total</th>
+                            <th>status</th>
                             <th scope="col">Action</th>
 
                         </tr>
@@ -44,6 +45,23 @@
                                 <td>{{$p->payment_method}}</td>
                                 <td>{{$p->grand_total}}</td>
                                 <td>
+                                @if($p->status==0)
+                                    đang chờ xác nhận
+                                @endif
+                                @if($p->status==1)
+                                    đã xác nhận
+                                @endif
+                                @if($p->status==2)
+                                    đang vận chuyển
+                                @endif
+                                @if($p->status==3)
+                                    đã giao
+                                @endif
+                                @if($p->status==4)
+                                    đã hủy đơn
+                                @endif
+                                </td>
+                                <td>
                                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                         <div class="btn-group" role="group">
                                             <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,7 +70,7 @@
                                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <a class="dropdown-item" href="{{url("/viewOrder/{$p->id}")}}"><i class="ti-eye"></i> xem chi tiết</a>
                                             <a class="dropdown-item" href="{{url("/repurchase/{$p->id}")}}"><i class="ti-shopping-cart"></i> Mua Lại Đơn</a>
-                                            <a class="dropdown-item" href=""><i class="ti-trash"></i> Hủy Đơn Hàng</a>
+                                            <a class="dropdown-item" href="{{url("/deleteOrder/{$p->id}")}}"><i class="ti-trash"></i> Hủy Đơn Hàng</a>
                                             </div>
                                         </div>
                                     </div>

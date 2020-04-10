@@ -123,7 +123,7 @@
                             <td></td>
                             <td>
                                 <div class="checkout_btn_inner">
-                                    <a class="gray_btn" href="#">{{trans('cart.continue_shopping')}}</a>
+                                    <a class="gray_btn" href="{{url("/")}}">{{trans('cart.continue_shopping')}}</a>
                                     <a class="main_btn" href="{{url("check-out")}}">{{trans('cart.proceed_to_checkout')}}</a>
                                 </div>
                             </td>

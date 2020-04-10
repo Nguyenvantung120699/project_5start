@@ -55,7 +55,6 @@
                             @php
                                 $category = \App\Category::all();
                             @endphp
-                            <option selected value=""></option>
                             @foreach($category as $c)
                             <option value="{{$c->id}}">{{$c->category_name}}</option>
                             @endforeach
@@ -70,7 +69,6 @@
                             @php
                                 $brand = \App\Brand::all();
                             @endphp
-                            <option selected value=""></option>
                             @foreach($brand as $b)
                                     <option value="{{$b->id}}">{{$b->brand_name}}</option>
                             @endforeach

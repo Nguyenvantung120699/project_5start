@@ -80,16 +80,15 @@
                                     <a href="#"
                                     >{{$c->product_name}}
                                         <span class="middle">x {{$c->cart_qty}}</span>
-                                        <span class="last">{{($c->cart_qty*$c->price)}}</span>
                                     </a>
                                 </li>
-                                    @endforeach
+                                @endforeach
                             </ul>
                             <ul class="list list_2">
                                 <li>
                                     <a href="#"
                                     >{{trans('procced_checkout.Subtotal')}}
-                                        <span>${{$cart_total}}</span>
+                                        <span>{{$cart_total}}</span>
                                     </a>
                                 </li>
                                 <li>
@@ -101,7 +100,7 @@
                                 <li>
                                     <a href="#"
                                     >{{trans('procced_checkout.Total')}}
-                                        <span>${{$cart_total}}</span>
+                                        <span>{{$cart_total}}</span>
                                     </a>
                                 </li>
                             </ul>
