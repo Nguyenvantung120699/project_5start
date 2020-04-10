@@ -127,6 +127,7 @@ class AdminController extends Controller
                 "category_name"=> $request->get("category_name"),
                 'image'=>$image
             ]);
+
         }catch(\Exception $e){
             return redirect()->back();
         }
