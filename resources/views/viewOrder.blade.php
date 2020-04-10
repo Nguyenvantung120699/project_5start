@@ -85,24 +85,12 @@
                         @empty
                             <p>Khong co san pham trong gio hang</p>
                         @endforelse
-                        <tr class="bottom_button">
-                            <td>
-                                <a class="gray_btn" href="{{url("/clear-cart")}}">Clear Cart</a>
-                            </td>
-                        </tr>
                         <tr>
                             <td>
                                 <h5>Subtotal</h5>
                             </td>
                             <td>
                                 <h5>${{$total}}</h5>
-                            </td>
-                        </tr>
-                        <tr class="out_button_area">
-                            <td>
-                                <div class="checkout_btn_inner">
-                                    <a class="main_btn" href="{{url("repurchase/{$p->pivot->order_id}")}}">Proceed to checkout</a>
-                                </div>
                             </td>
                         </tr>
                         </tbody>

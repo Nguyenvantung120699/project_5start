@@ -4,13 +4,14 @@
 <div class="checkout-success" style="text-align: center ;padding-bottom: 100px">
 
     <img src="{{asset("https://previews.123rf.com/images/faysalfarhan/faysalfarhan1711/faysalfarhan171156257/89812926-success-validate-icon-isolated-on-orange-round-button-abstract-illustration.jpg")}} " alt="" style="width: 70px;height: 70px">
-    <h3>Giao Hàng Thành Công</h3>
+    <h3>Đặt Hàng Thành Công</h3>
     <p>vui lòng để lại những đánh giá của bạn về chúng tôi để chúng tôi có những cải tiến tốt hơn</p>
     <b>Xin Cảm ơn!</b>
     <!-- Modal -->
     <div>
     @foreach($cart as $p)
       <div style="border-top: 1px solid;padding-top:10%;">
+      <span><h3>Thông tin Sản Phẩm</h3></span>
           <p>tên sp : {{$p->product_name}}</p>
           <div class="d-flex">
               <img
