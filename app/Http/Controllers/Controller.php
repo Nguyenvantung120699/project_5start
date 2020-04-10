@@ -53,8 +53,15 @@ class Controller extends BaseController
                 $expireDate = $now ->addHour(5);
                 Cache::put('home',$views,$expireDate);
             }
-
             return Cache::get("home");
+
+            // return $view;
+            // // neu muon xoa 1 cache cu the
+            // Cache::forget("home");
+            // // neu muon xoa tat ca cache
+            // Cache::flush();
+            // // neu muon luu vinh vien
+            // Cache::forever("key","value");
     }
     public function rate(){
         $product=\App\Product::find(2);
