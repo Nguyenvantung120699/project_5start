@@ -40,7 +40,7 @@ class Controller extends BaseController
 }
 
     public function home(){
-            if (!Cache::has("home")){
+            // if (!Cache::has("home")){
                 $cache = [];
                 $cache['categories'] = Category::all();
                 $cache['purchased'] = Product::orderBy('purchase','desc')->take(8)->get();
@@ -52,10 +52,10 @@ class Controller extends BaseController
                 $now =Carbon::now();
                 $expireDate = $now ->addHour(5);
                 Cache::put('home',$views,$expireDate);
-            }
-            return Cache::get("home");
+            // }
+            // return Cache::get("home");
 
-            return $view;
+            return $views;
             // neu muon xoa 1 cache cu the
             Cache::forget("home");
             // neu muon xoa tat ca cache
