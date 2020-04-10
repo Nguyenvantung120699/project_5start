@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\OrderCreated;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -38,10 +40,22 @@ class Controller extends BaseController
 }
 
     public function home(){
-        $categories=Category::all();
-        $purchased = Product::orderBy('purchase','desc')->take(8)->get();
-        return view("home",['categories'=>$categories,'purchased'=>$purchased]);
-        }
+            if (!Cache::has("home")){
+                $cache = [];
+                $cache['categories'] = Category::all();
+                $cache['purchased'] = Product::orderBy('purchase','desc')->take(8)->get();
+
+                $categories = $cache['categories'];
+                $purchased = $cache['purchased'];
+                $views = view('home',['categories'=>$categories,'purchased'=>$purchased])->render();
+
+                $now =Carbon::now();
+                $expireDate = $now ->addHour(5);
+                Cache::put('home',$views,$expireDate);
+            }
+
+            return Cache::get("home");
+    }
     public function rate(){
         $product=\App\Product::find(2);
         $rate = \App\Feedback_product::where("product_id",$product->id)->get();
@@ -75,7 +89,7 @@ class Controller extends BaseController
         return view("elements");
         }
 
-        
+
     public function listingCategory($id){
         $category = Category::find($id);
         $product=$category->Products()->paginate(9);
@@ -207,7 +221,7 @@ class Controller extends BaseController
         ]);
         foreach ($cart as $p){
 
-            $product = Product::find($p->id);  
+            $product = Product::find($p->id);
             $product->update([
                 "quantity" => $product->quantity-$p->cart_qty,
                 "purchase" => $product->purchase+$p->cart_qty,
@@ -242,7 +256,7 @@ class Controller extends BaseController
 
 
     public function checkoutSuccess(){
-        return view("checkoutSuccess"); 
+        return view("checkoutSuccess");
     }
     public function feedback(Request $request){
         $request->validate([
@@ -360,6 +374,6 @@ public function postLogin(Request $request){
             return response()->json(['status'=>false,'message'=>"login failure"]);
         }
 
-        //group fuction 
-    
+        //group fuction
+
 }
