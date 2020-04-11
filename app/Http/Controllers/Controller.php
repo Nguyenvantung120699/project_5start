@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 use App\Feedback_product;
-use App\Mail\OrederCreated;
+use App\Mail\OrderCreated;
 use App\Product;
 use App\Category;
 use App\Order;
